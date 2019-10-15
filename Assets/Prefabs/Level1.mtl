@@ -1,0 +1,35 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl bottom
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.002797 0.549195
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Projekti\Santorini Unity\1.jpg
+
+newmtl sides
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.640000 0.007583
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Projekti\Santorini Unity\wall.jpg
+
+newmtl top
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.575959 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Projekti\Santorini Unity\1.jpg
