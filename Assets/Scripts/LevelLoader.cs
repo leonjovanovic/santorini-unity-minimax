@@ -10,7 +10,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
     public TextMeshProUGUI progressText;
-    public static int mode = 0;
+    public static int mode = 4;
     public void LoadLevel(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));

@@ -9,17 +9,20 @@ public class TileButton : MonoBehaviour
     public Table table;
     public int x, y, height;
     public bool busy;
+    public ExamplePlayerScript player;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if (LevelLoader.mode == 4) return;
         table = GameObject.Find("The Board").GetComponent<Table>();
     }
 
     public void OnMouseDown()
     {
         Debug.Log(gameObject.name);
+        if (LevelLoader.mode == 4) return;
         if (table.start)
         {
             if (table.selected!="empty" && !busy && !table.build )
@@ -53,7 +56,7 @@ public class TileButton : MonoBehaviour
                 level.transform.parent.gameObject.layer = 0;
                 table.build = false;
                 //table.print_state();//adads
-                table.turn = !table.turn;
+                table.turn = !table.turn; //OVDE MENJAMO TURN!!!!!!!!!!!!!!!!
                 table.selected = "empty";
             }
             return;

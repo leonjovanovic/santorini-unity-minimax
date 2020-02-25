@@ -9,11 +9,12 @@ public class Figure : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (LevelLoader.mode == 4) return;
         table = GameObject.Find("The Board").GetComponent<Table>();
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //proveravamo pobedu
     {
         if (gameObject.name == "Player11" && gameObject.transform.position.x != -1)
             if (!is_movable() && !table.player12.GetComponent<Figure>().is_movable())
@@ -30,21 +31,21 @@ public class Figure : MonoBehaviour
             }
     }
     
-    void OnMouseOver()
+    void OnMouseOver() //highlight hover
     {
         Material[] matArray = gameObject.GetComponent<Renderer>().materials;
         matArray[1] = table.highlightHover;
         gameObject.GetComponent<Renderer>().materials = matArray;
     }
 
-    void OnMouseExit()
+    void OnMouseExit() //highlight hover
     {
         Material[] matArray = gameObject.GetComponent<Renderer>().materials;
         matArray[1] = null;
         gameObject.GetComponent<Renderer>().materials = matArray;
     }
 
-    void OnMouseDown()
+    void OnMouseDown() //kada kliknemo figuricu
     {
         if (!table.build && table.turns(gameObject))
         {

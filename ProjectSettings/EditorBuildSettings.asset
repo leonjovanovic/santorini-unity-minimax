@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: adcf13731c73bf54faf79ec68896f242
   - enabled: 1
-    path: Assets/CaptainsMess/Example/ExampleScene.unity
-    guid: e2b0b25e7c35448b4adf4158c274752a
+    path: Assets/Scenes/GameOnline.unity
+    guid: b754fd4e023c79247880236c2027756a
   m_configObjects: {}

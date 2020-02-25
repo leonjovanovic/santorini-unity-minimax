@@ -26,6 +26,12 @@ public class ExamplePlayerScript : CaptainsMessPlayer
 	[SyncVar]
 	public int totalPoints;
 
+	//[SyncVar]
+	//public char[,] state;
+
+	[SyncVar]
+	public int id;
+
 
 	public override void OnStartLocalPlayer()
 	{
@@ -36,6 +42,13 @@ public class ExamplePlayerScript : CaptainsMessPlayer
 
 		myColour = UnityEngine.Random.ColorHSV(0,1,1,1,1,1);
 		CmdSetCustomPlayerInfo(myColour);
+		
+		TextMesh text = GameObject.Find("PlayerID").GetComponent<TextMesh>();
+		text.text ="PlayerID = "+ id;
+
+		//if (id == 1) id = 2;
+		//else id = 1;
+		//setPlayerID(id);
 	}
 
 	[Command]

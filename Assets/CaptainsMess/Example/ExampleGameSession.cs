@@ -58,8 +58,11 @@ public class ExampleGameSession : NetworkBehaviour
 		players = aStartingPlayers.Select(p => p as ExamplePlayerScript).ToList();
 
 		RpcOnStartedGame();
+		int id = 1;
 		foreach (ExamplePlayerScript p in players) {
 			p.RpcOnStartedGame();
+			p.id = id;
+			id++;
 		}
 
         StartCoroutine(RunGame());

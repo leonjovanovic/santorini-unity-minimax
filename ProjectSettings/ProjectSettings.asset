@@ -711,10 +711,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: d503aeda-b8f9-449f-a704-1a349578122f
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Santorini
+  organizationId: leonjovanovic1996
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

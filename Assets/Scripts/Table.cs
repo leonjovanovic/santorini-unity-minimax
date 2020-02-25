@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-
+using System;
 
 public class Table : MonoBehaviour
 {
@@ -24,6 +23,10 @@ public class Table : MonoBehaviour
     {
         Application.targetFrameRate = 30;
         Screen.SetResolution(1920, 1080, false);
+
+        //if network turn off scripts
+        network_turn_off();
+
         this.start = false;
         this.p11 = this.p12 = this.p21 = this.p22 = true;
         turn = true;
@@ -66,6 +69,20 @@ public class Table : MonoBehaviour
         }
     }
 
+    private void network_turn_off()
+    {
+        if (LevelLoader.mode != 4) GameObject.Find("NetworkManager").SetActive(false);
+
+        for (int i = 0; i < 5 ; i++)
+            for (int j = 0; j < 5 ; j++)
+            {
+                GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().enabled = false;
+            }
+        /*for (int i = 1; i < 3; i++)
+            for (int j = 1; j < 3; j++)
+                GameObject.Find("Player" + i + "" + j).GetComponent<Figure>().enabled = false;*/
+    }
+
     public bool field_exist(int x, int y)
     {
         if (x > 4 || x < 0 || y > 4 || y < 0)
@@ -81,6 +98,7 @@ public class Table : MonoBehaviour
             return true;
         else return false;
     }
+    
     public void erase_highlighted(int x, int y)
     {
         //print(obj.transform.parent.name);
@@ -272,6 +290,7 @@ public class Table : MonoBehaviour
         }
         return temp;
     }
+    
     public char[,] get_state_tiles(char[,] temp)
     {
         for (int i = 0; i < 5; i++)

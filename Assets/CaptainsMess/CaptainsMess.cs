@@ -8,7 +8,7 @@ public class CaptainsMess : MonoBehaviour
 {
     public string broadcastIdentifier = "CM";
     public int minPlayers = 2;
-    public int maxPlayers = 4;
+    public int maxPlayers = 2;
     public CaptainsMessPlayer playerPrefab;
     public float countdownDuration = 3; // Wait for this many seconds after people are ready before starting the game
     public CaptainsMessListener listener;
