@@ -15,7 +15,14 @@ public class LevelButton : MonoBehaviour
     {
         
     }
+    //Pre Blender
+    /*void OnMouseDown()
+    {
+        Debug.Log(gameObject.name);
+        gameObject.transform.parent.transform.parent.GetComponent<TileButton>().OnMouseDown();
+    }*/
 
+    //Post Blender
     void OnMouseDown()
     {
         Debug.Log(gameObject.name);

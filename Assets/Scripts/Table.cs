@@ -21,11 +21,9 @@ public class Table : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 30;
-        Screen.SetResolution(1920, 1080, false);
+        Application.targetFrameRate = 60;
+        Screen.SetResolution(1920, 1080, true);
 
-        //if network turn off scripts
-        network_turn_off();
 
         this.start = false;
         this.p11 = this.p12 = this.p21 = this.p22 = true;
@@ -63,24 +61,11 @@ public class Table : MonoBehaviour
             for (int i = 0; i < 5; i++)
                 for (int j = 0; j < 5; j++)
                 {
-                    GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").layer = 2;
+                    //GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").layer = 2;
+                    GameObject.Find("Tile" + i + "" + j).layer = 2;
                 }
             GameObject.Find("CanvasExit").GetComponent<Canvas>().enabled = true;
         }
-    }
-
-    private void network_turn_off()
-    {
-        if (LevelLoader.mode != 4) GameObject.Find("NetworkManager").SetActive(false);
-
-        for (int i = 0; i < 5 ; i++)
-            for (int j = 0; j < 5 ; j++)
-            {
-                GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().enabled = false;
-            }
-        /*for (int i = 1; i < 3; i++)
-            for (int j = 1; j < 3; j++)
-                GameObject.Find("Player" + i + "" + j).GetComponent<Figure>().enabled = false;*/
     }
 
     public bool field_exist(int x, int y)
@@ -110,7 +95,7 @@ public class Table : MonoBehaviour
                     continue;
                 if (oldX == i && oldY == j)
                     continue;
-                Renderer temp = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<Renderer>();
+                Renderer temp = GameObject.Find("Tile" + i + "" + j).GetComponent<Renderer>();
                 Material[] matArray = temp.materials;
                 matArray[1] = null;
                 temp.materials = matArray;
@@ -216,8 +201,8 @@ public class Table : MonoBehaviour
         int y;
         if (!p11)
         {
-            x = (int)player11.transform.position.x; y = (int)player11.transform.position.z;
-            switch (GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().height)
+            x = player11.GetComponent<Figure>().x; y = player11.GetComponent<Figure>().y;
+            switch (GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().height)
             {
                 case 0:
                     temp[x, y] = 'A';
@@ -235,8 +220,8 @@ public class Table : MonoBehaviour
         }
         if (!p12)
         {
-            x = (int)player12.transform.position.x; y = (int)player12.transform.position.z;
-            switch (GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().height)
+            x = player12.GetComponent<Figure>().x; y = player12.GetComponent<Figure>().y;
+            switch (GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().height)
             {
                 case 0:
                     temp[x, y] = 'E';
@@ -253,8 +238,8 @@ public class Table : MonoBehaviour
             }
         }
         if (!p21) {
-            x = (int)player21.transform.position.x; y = (int)player21.transform.position.z;
-            switch (GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().height)
+            x = player21.GetComponent<Figure>().x; y = player21.GetComponent<Figure>().y;
+            switch (GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().height)
             {
                 case 0:
                     temp[x, y] = 'a';
@@ -271,8 +256,8 @@ public class Table : MonoBehaviour
             }
         }
         if (!p22) {
-            x = (int)player22.transform.position.x; y = (int)player22.transform.position.z;
-            switch (GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().height)
+            x = player22.GetComponent<Figure>().x; y = player22.GetComponent<Figure>().y;
+            switch (GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().height)
             {
                 case 0:
                     temp[x, y] = 'e';
@@ -296,7 +281,7 @@ public class Table : MonoBehaviour
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < 5; j++)
             {
-                TileButton tile = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>();
+                TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
                 if (!tile.busy) //nema figurice na polju
                 {
                     switch (tile.height)
@@ -326,6 +311,7 @@ public class Table : MonoBehaviour
     public void repaint(char[,] new_state)
     {
         char[,] curr_state = get_state();
+        //print_state(curr_state);
         for (int i = 0; i < 5; i++)
             for(int j = 0; j < 5; j++)
             {
@@ -334,8 +320,8 @@ public class Table : MonoBehaviour
                 //Promenice se u tri slucaja, tamo odakle se pomerio, tamo gde se pomerio i tamo gde je sagradio
                 if(indexOf(curr_state[i,j])<16 && indexOf(new_state[i, j]) > 15) //figurica je bila na tom polju al sada vise nije
                 {
-                    GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().busy = false; //Nemamo nista da menjamo jer mi menjamo samo figuricu a ona vise nije ovde tako da samo unbusy(tile)
-                    //Debug.Log(cnt++ +" Origin polje: " + i + " " + j);
+                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy = false; //Nemamo nista da menjamo jer mi menjamo samo figuricu a ona vise nije ovde tako da samo unbusy(tile)
+                    //Debug.Log("Tile" + i + "" + j);
                     continue;
                 }
                 if (indexOf(curr_state[i, j]) > 15 && indexOf(new_state[i, j]) < 16) //figurica nije bila ali sada jeste
@@ -343,40 +329,35 @@ public class Table : MonoBehaviour
                     if (indexOf(curr_state[i, j]) - 16 == 3)
                         if (turn)
                         {
-                            //Debug.Log("Pobedio, visina polja curr_state: " + indexOf(curr_state[i, j]) + " visina polja new_state: " + indexOf(new_state[i, j])+"figurica: "+ new_state[i, j]);
-                            won(1);
+                           won(1);
                         }
                         else won(2);
                     if (indexOf(new_state[i, j]) % 4 != indexOf(curr_state[i, j]) % 4)//Ukoliko se pomeri na susedno polje i sagradi na polju na kome je prethodno bio
                     {
-                        GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().height++;
-                        int height = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().height;
-                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height);
-                        level.GetComponent<Renderer>().enabled = true;
+                        GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height++;
+                        int height = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height;
+                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                        level.SetActive(true);
                         level.layer = 0;
-                        Debug.Log(cnt++ + " Gradnja na polju: " + i + " " + j + " visina: " + height);
                     }
-                    TileButton tile = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>();
-                    float tmp = tile.y_axis(tile.height);
-                    Vector3 temp = new Vector3(i, tmp, j);
+                    TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
                     int id, id2;
                     if (turn) id = 1;
                     else id = 2;
                     if (indexOf(new_state[i, j]) < 4 || (indexOf(new_state[i, j]) > 7 && indexOf(new_state[i, j]) < 12)) id2 = 1;
                     else id2 = 2;
-                    GameObject.Find("Player" + id + "" + id2).transform.position = temp;
+                    tile.xyz_axis(tile.height, GameObject.Find("Player" + id + "" + id2));
                     tile.busy = true;
-                    Debug.Log(cnt++ +" Destination polje: " + i + " " + j+" Figurica "+id+""+id2+ "Char: "+new_state[i,j]);
                     continue;
                 }
                 if (indexOf(curr_state[i, j]) > 15 && indexOf(new_state[i, j]) > 15) //polje gde se sagradilo
                 {
-                    GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().height++;
-                    int height = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().height;
-                    GameObject level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height+ "/Level" + height);
-                    level.GetComponent<Renderer>().enabled = true;
+                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height++;
+                    int height = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height;
+                    GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                    Debug.Log("Tile" + i + "" + j + "/house/Level" + height);
+                    level.SetActive(true);
                     level.layer = 0;
-                    Debug.Log(cnt++ +" Gradnja na polju: "+i+" "+j+" visina: "+height);
                     continue;
                 }
 
@@ -400,8 +381,8 @@ public class Table : MonoBehaviour
                     else id = 2;
                     if (indexOf(curr_state[i, j]) < 4 || (indexOf(curr_state[i, j]) > 7 && indexOf(curr_state[i, j]) < 12)) id2 = 1;
                     else id2 = 2;
-                    GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().busy = false; //Nemamo nista da menjamo jer mi menjamo samo figuricu a ona vise nije ovde tako da samo unbusy(tile)
-                    
+                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy = false; //Nemamo nista da menjamo jer mi menjamo samo figuricu a ona vise nije ovde tako da samo unbusy(tile)
+
                     if (undo_p11 || undo_p12 || undo_p21 || undo_p22)//SAMO ZA UNDO POSTAVLJANJA FIGURICA
                     {
                         temp = new Vector3(-1, 0, 0);
@@ -414,52 +395,44 @@ public class Table : MonoBehaviour
                 }
                 if (indexOf(curr_state[i, j]) > 15 && indexOf(undo_state[i, j]) < 16) //figurica je bila na tom polju ali smo je pomerili i sad moramo da je vratimo
                 {
-                    TileButton tile = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>();
+                    TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
 
 
                     if (indexOf(undo_state[i, j]) % 4 != indexOf(curr_state[i, j]) % 4)//Ukoliko se pomeri na susedno polje i sagradi na polju na kome je prethodno bio
                     {
                         int height = tile.GetComponent<TileButton>().height;
-                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height+ "/Level" + height);
-                        level.GetComponent<Renderer>().enabled = false;//Obrisi visi nivo
+                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                        level.SetActive(false);
                         level.layer = 2;//ignore Raycast
                         tile.GetComponent<TileButton>().height--;
-                        level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height+ "/Level" + height);
-                        //level.GetComponent<Renderer>().enabled = true;//trebalo bi da je vec true al za svaki slucaj
+                        level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
                         level.layer = 0;//da vise ne ignorise Raycast
-                        Debug.Log(cnt++ + " Brisanje gradnje na polju: " + i + " " + j + " visina: " + height);
                     }
 
-                    float tmp = tile.y_axis(indexOf(undo_state[i, j])%4);//prosledjujemo visinu na kojoj se nalazio u undo_state
-                    Vector3 temp = new Vector3(i, tmp, j);
                     int id, id2;
                     if (undo_turn) id = 1;
                     else id = 2;
                     if (indexOf(undo_state[i, j]) < 4 || (indexOf(undo_state[i, j]) > 7 && indexOf(undo_state[i, j]) < 12)) id2 = 1;
                     else id2 = 2;
                     GameObject player = GameObject.Find("Player" + id + "" + id2);
-                    player.transform.position = temp;
+                    tile.xyz_axis(indexOf(undo_state[i, j]) % 4, player);//prosledjujemo visinu na kojoj se nalazio u undo_state
                     tile.busy = true;
-                    Debug.Log(cnt++ + " Destination polje: " + i + " " + j + " Figurica " + id + "" + id2 + "Char: " + undo_state[i, j]);
 
                     continue;
                 }
                 if (indexOf(curr_state[i, j]) > 15 && indexOf(undo_state[i, j]) > 15) //polje gde se sagradilo
                 {
-                    GameObject tile = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual");
-
+                    GameObject tile = GameObject.Find("Tile" + i + "" + j);
                     int height = tile.GetComponent<TileButton>().height;
-                    GameObject level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height+ "/Level" + height);
+                    GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                    level.SetActive(false);
                     level.layer = 2;//ignore Raycast
-                    level.GetComponent<Renderer>().enabled = false;//Obrisi visi nivo
                     height = tile.GetComponent<TileButton>().height--;
                     if (height != 0)
                     {
-                        level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height+ "/Level" + height);
-                        //level.GetComponent<Renderer>().enabled = true;//trebalo bi da je vec true al za svaki slucaj
+                        level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
                         level.layer = 0;//da vise ne ignorise Raycast
                     }
-                    Debug.Log(cnt++ + " Brisanje gradnje na polju: " + i + " " + j + " visina: " + height);
                     continue;
                 }
 
@@ -479,7 +452,7 @@ public class Table : MonoBehaviour
                 player = GameObject.Find("Player11");
                 int x = (int)player.transform.position.x, y = (int)player.transform.position.z;
                 erase_highlighted(x, y);
-                GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().busy = false;
+                GameObject.Find("Tile" + x + "" + y ).GetComponent<TileButton>().busy = false;
                 player.transform.position = temp;
                 player.GetComponent<Renderer>().enabled = false;
             }
@@ -488,24 +461,23 @@ public class Table : MonoBehaviour
                 player = GameObject.Find("Player12");
                 int x = (int)player.transform.position.x, y = (int)player.transform.position.z;
                 erase_highlighted(x, y);
-                GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().busy = false;
+                GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().busy = false;
                 player.transform.position = temp;
                 player.GetComponent<Renderer>().enabled = false;
 
                 player = GameObject.Find("Player21");
                 x = (int)player.transform.position.x; y = (int)player.transform.position.z;
                 erase_highlighted(x, y);
-                GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().busy = false;
+                GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().busy = false;
                 player.transform.position = temp;
                 player.GetComponent<Renderer>().enabled = false;
 
                 player = GameObject.Find("Player22");
                 x = (int)player.transform.position.x; y = (int)player.transform.position.z;
                 erase_highlighted(x, y);
-                GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().busy = false;
+                GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().busy = false;
                 player.transform.position = temp;
                 player.GetComponent<Renderer>().enabled = false;
-
 
             }
             return;
@@ -521,73 +493,62 @@ public class Table : MonoBehaviour
                 //Promenice se u tri slucaja, tamo odakle se pomerio, tamo gde se pomerio i tamo gde je sagradio
                 if (indexOf(curr_state[i, j]) < 16 && indexOf(undo_state[i, j]) > 15) //figurica je na tom polju al pre toga nije bila (undo)
                 {
-                    TileButton tile = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>(); //Nemamo nista da menjamo jer mi menjamo samo figuricu a ona vise nije ovde tako da samo unbusy(tile)
+                    TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>(); //Nemamo nista da menjamo jer mi menjamo samo figuricu a ona vise nije ovde tako da samo unbusy(tile)
                     tile.busy = false;
                     erase_highlighted(i, j);
 
                     if (indexOf(undo_state[i, j]) % 4 != indexOf(curr_state[i, j]) % 4)//Ukoliko se pomeri na susedno polje i sagradi na polju na kome je prethodno bio
                     {
                         int height = tile.GetComponent<TileButton>().height;
-                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height + "/Level" + height);
-                        level.GetComponent<Renderer>().enabled = false;//Obrisi visi nivo
+                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                        level.SetActive(false);
                         level.layer = 2;//ignore Raycast
                         tile.GetComponent<TileButton>().height--;
-                        level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height + "/Level" + height);
-                        //level.GetComponent<Renderer>().enabled = true;//trebalo bi da je vec true al za svaki slucaj
+                        level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
                         level.layer = 0;//da vise ne ignorise Raycast
-                        Debug.Log(cnt++ + " Brisanje gradnje na polju: " + i + " " + j + " visina: " + height);
                     }
-
                     continue;
                 }
                 if (indexOf(undo_state[i, j]) < 16) //figurica je bila na tom polju ali smo je pomerili i sad moramo da je vratimo
                 {
-                    TileButton tile = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>();
+                    TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
 
                     //PROVERITI KASNIJE
                     if (indexOf(undo_state[i, j]) % 4 != indexOf(curr_state[i, j]) % 4)//Ukoliko se pomeri na susedno polje i sagradi na polju na kome je prethodno bio
                     {
                         int height = tile.GetComponent<TileButton>().height;
-                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height + "/Level" + height);
-                        level.GetComponent<Renderer>().enabled = false;//Obrisi visi nivo
+                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                        level.SetActive(false);
                         level.layer = 2;//ignore Raycast
                         tile.GetComponent<TileButton>().height--;
-                        level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height + "/Level" + height);
-                        //level.GetComponent<Renderer>().enabled = true;//trebalo bi da je vec true al za svaki slucaj
+                        level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
                         level.layer = 0;//da vise ne ignorise Raycast
-                        Debug.Log(cnt++ + " Brisanje gradnje na polju: " + i + " " + j + " visina: " + height);
                     }
 
-                    float tmp = tile.y_axis(indexOf(undo_state[i, j]) % 4);//prosledjujemo visinu na kojoj se nalazio u undo_state
-                    Vector3 temp = new Vector3(i, tmp, j);
                     int id;
                     if (indexOf(undo_state[i, j]) < 4) id = 11;
                     else if (indexOf(undo_state[i, j]) < 8) id = 12;
                     else if (indexOf(undo_state[i, j]) < 12) id = 21;
                     else id = 22;
                     GameObject player = GameObject.Find("Player" + id);
-                    player.transform.position = temp;
+                    tile.xyz_axis(indexOf(undo_state[i, j]) % 4, player);//prosledjujemo visinu na kojoj se nalazio u undo_state i menjamo poziciju figurice
                     tile.busy = true;
-                    Debug.Log(cnt++ + " Destination polje: " + i + " " + j + " Figurica " + id + "Char: " + undo_state[i, j]);
 
                     continue;
                 }
                 if (indexOf(curr_state[i, j]) > 15 && indexOf(undo_state[i, j]) > 15) //polje gde se sagradilo
                 {
-                    GameObject tile = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual");
-
+                    GameObject tile = GameObject.Find("Tile" + i + "" + j);
                     int height = tile.GetComponent<TileButton>().height;
-                    GameObject level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height + "/Level" + height);
+                    GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                    level.SetActive(false);
                     level.layer = 2;//ignore Raycast
-                    level.GetComponent<Renderer>().enabled = false;//Obrisi visi nivo
                     height = tile.GetComponent<TileButton>().height--;
                     if (height != 0)
                     {
-                        level = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual/Level" + height + "/Level" + height);
-                        //level.GetComponent<Renderer>().enabled = true;//trebalo bi da je vec true al za svaki slucaj
+                        level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
                         level.layer = 0;//da vise ne ignorise Raycast
                     }
-                    Debug.Log(cnt++ + " Brisanje gradnje na polju: " + i + " " + j + " visina: " + height);
                     continue;
                 }
             }
@@ -630,7 +591,6 @@ public class Table : MonoBehaviour
         if (LevelLoader.mode != 2)
             repaint_undo(undo_state);
         else repaint_undo_ai(undo_state);
-        //erase_highlighted(GameObject.Find(undo_selected));
         start = undo_start;
         p11 = undo_p11;
         p12 = undo_p12;

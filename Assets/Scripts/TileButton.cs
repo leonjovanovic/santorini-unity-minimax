@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class TileButton : MonoBehaviour
@@ -15,14 +16,12 @@ public class TileButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (LevelLoader.mode == 4) return;
         table = GameObject.Find("The Board").GetComponent<Table>();
     }
 
     public void OnMouseDown()
     {
-        Debug.Log(gameObject.name);
-        if (LevelLoader.mode == 4) return;
+        //Debug.Log(gameObject.name);
         if (table.start)
         {
             if (table.selected!="empty" && !busy && !table.build )
@@ -31,31 +30,29 @@ public class TileButton : MonoBehaviour
                 GameObject tempObj = GameObject.Find(table.selected);
                 if (!table.turns(tempObj) || !possible_to_move(tempObj)) return;
                 unbusy_old(tempObj);
-                table.erase_highlighted((int)tempObj.transform.position.x, (int)tempObj.transform.position.z);
+                table.erase_highlighted(tempObj.GetComponent<Figure>().x, tempObj.GetComponent<Figure>().y);
                 if (height == 3)
                     if (table.turn) table.won(1);
                     else table.won(2);
-                float tmp = y_axis(this.height);
-                Vector3 temp = new Vector3(x, tmp, y);
-                tempObj.transform.position = temp; //tempObj je figurica
+                xyz_axis(this.height, tempObj); //pomeramo figuricu tempObj
                 this.busy = true;
                 table.build = true;
-                table.moved = this.transform.parent.name;
+                table.moved = this.name;
                 highlight_builds();
             }
             else if(!busy && table.build && height<4)
             {
                 if (!possible_to_build()) return;
-                GameObject select = GameObject.Find(table.selected);
-                table.erase_highlighted((int)select.transform.position.x, (int)select.transform.position.z);
+                Figure select = GameObject.Find(table.selected).GetComponent<Figure>();
+                table.erase_highlighted(select.x, select.y);
                 height++;
-                string tileName = "Tile" + ((int)this.transform.position.x) + "" + ((int)this.transform.position.z) + "/Cube - Visual/Level" + height + "/Level" + height;
-                GameObject level = GameObject.Find(tileName);
-                level.GetComponent<Renderer>().enabled = true;
+                string tileName = "Tile" + ((int)this.transform.position.x) + "" + ((int)this.transform.position.z)+"/house";
+                GameObject level = GameObject.Find(tileName).transform.Find("Level" + height).gameObject;
+                level.SetActive(true);
                 level.layer = 0;
-                level.transform.parent.gameObject.layer = 0;
+                level.gameObject.layer = 0;
                 table.build = false;
-                //table.print_state();//adads
+                //table.print_state();
                 table.turn = !table.turn; //OVDE MENJAMO TURN!!!!!!!!!!!!!!!!
                 table.selected = "empty";
             }
@@ -67,6 +64,8 @@ public class TileButton : MonoBehaviour
 
     public void set_up_figurines()
     {
+        GameObject figurica = null;
+        //Debug.Log("USAO u set up figurines");
         if (table.p11)
         {
             table.create_copy();
@@ -74,7 +73,10 @@ public class TileButton : MonoBehaviour
             busy = true;
             GameObject.Find("Player11").GetComponent<Renderer>().enabled = true;
             Vector3 temp = new Vector3(x, 0, y);
-            GameObject.Find("Player11").transform.position = temp;
+            figurica = GameObject.Find("Player11");
+            figurica.transform.position = temp;
+            figurica.GetComponent<Figure>().x = x;
+            figurica.GetComponent<Figure>().y = y;
             return;
         }
         if (table.p12)
@@ -85,7 +87,10 @@ public class TileButton : MonoBehaviour
             busy = true;
             GameObject.Find("Player12").GetComponent<Renderer>().enabled = true;
             Vector3 temp = new Vector3(x, 0, y);
-            GameObject.Find("Player12").transform.position = temp;
+            figurica = GameObject.Find("Player12");
+            figurica.transform.position = temp;
+            figurica.GetComponent<Figure>().x = x;
+            figurica.GetComponent<Figure>().y = y;
             table.turn = !table.turn;
             return;
         }
@@ -97,7 +102,10 @@ public class TileButton : MonoBehaviour
             busy = true;
             GameObject.Find("Player21").GetComponent<Renderer>().enabled = true;
             Vector3 temp = new Vector3(x, 0, y);
-            GameObject.Find("Player21").transform.position = temp;
+            figurica = GameObject.Find("Player21");
+            figurica.transform.position = temp;
+            figurica.GetComponent<Figure>().x = x;
+            figurica.GetComponent<Figure>().y = y;
             return;
         }
         if (table.p22)
@@ -109,38 +117,54 @@ public class TileButton : MonoBehaviour
             table.start = true;
             GameObject.Find("Player22").GetComponent<Renderer>().enabled = true;
             Vector3 temp = new Vector3(x, 0, y);
-            GameObject.Find("Player22").transform.position = temp;
+            figurica = GameObject.Find("Player22");
+            figurica.transform.position = temp;
+            figurica.GetComponent<Figure>().x = x;
+            figurica.GetComponent<Figure>().y = y;
             table.turn = !table.turn;
             return;
         }
     }
-    public float y_axis(int heights)//moram da prosledjujem height zbog undo-a
+    public Vector3 xyz_axis(int heights, GameObject figurica)//moram da prosledjujem height zbog undo-a
     {
-        float tmp = 0;
+        Vector3 tmp = new Vector3();
         switch (heights)
         {
             case 1:
-                tmp = (float)0.426;
+                tmp.x = x;
+                tmp.z = y - 0.1f;
+                tmp.y = (float)0.7185981;
                 break;
             case 2:
-                tmp = (float)0.863;
+                tmp.x = x;
+                tmp.z = y - 0.1f;
+                tmp.y = (float)1.242;
                 break;
             case 3:
-                tmp = (float)1.279;
+                tmp.x = x;
+                tmp.z = y - 0.1f;
+                tmp.y = (float)1.627;
                 break;
             case 0:
-                tmp = 0;
+                tmp.x = x;
+                tmp.z = y;
+                tmp.y = 0;
                 break;
             case 4:
-                tmp = 0;
+                tmp.x = x;
+                tmp.z = y;
+                tmp.y = 0;
                 break;
         }
+        figurica.transform.position = tmp;
+        figurica.GetComponent<Figure>().x = x;
+        figurica.GetComponent<Figure>().y = y;
         return tmp;
     }
 
     public bool possible_to_move(GameObject obj)//Prosledjujemo figuru da li moze da se pomeri na (this) polje
     {
-        TileButton oldTile = GameObject.Find("Tile"+obj.transform.position.x+""+obj.transform.position.z+ "/Cube - Visual").GetComponent<TileButton>();
+        TileButton oldTile = GameObject.Find("Tile" + obj.GetComponent<Figure>().x + "" + obj.GetComponent<Figure>().y).GetComponent<TileButton>();
         int oldH = oldTile.height, oldX = oldTile.x, oldY = oldTile.y;
         if (height - oldH > 1 || busy || Math.Abs(oldX - x) > 1 || Math.Abs(oldY - y) > 1 || (oldX == x && oldY == y) || height == 4)
             return false;
@@ -150,14 +174,14 @@ public class TileButton : MonoBehaviour
     public void unbusy_old(GameObject obj)
     {
         //Removing figure from tile
-        string tileName = "Tile" + ((int)obj.transform.position.x) + "" + ((int)obj.transform.position.z) + "/Cube - Visual";
+        string tileName = "Tile" + ((int)obj.GetComponent<Figure>().x) + "" + ((int)obj.GetComponent<Figure>().y);
         TileButton temp = GameObject.Find(tileName).GetComponent<TileButton>();
         temp.busy = false;
     }
 
     public bool possible_to_build()
     {
-        TileButton tile = GameObject.Find(table.moved + "/Cube - Visual").GetComponent<TileButton>();
+        TileButton tile = GameObject.Find(table.moved).GetComponent<TileButton>();
         if (height == 4 || busy || Math.Abs(tile.x - x) > 1 || Math.Abs(tile.y - y) > 1 || (tile.x == x && tile.y == y))
             return false;
         return true;
@@ -173,7 +197,7 @@ public class TileButton : MonoBehaviour
                     continue;
                 if (x == i && y == j)
                     continue;
-                TileButton temp = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>();
+                TileButton temp = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
                 if (temp.possible_to_build())
                 {
                     ret.Add(temp.gameObject);//Dodajemo Cube
@@ -191,7 +215,6 @@ public class TileButton : MonoBehaviour
         {
             Material[] matArray = temp[i].GetComponent<Renderer>().materials;
             matArray[1] = table.highlight;
-            print(matArray[1].name);
             temp[i].GetComponent<Renderer>().materials = matArray;
         }
     }

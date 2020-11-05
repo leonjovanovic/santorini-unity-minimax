@@ -7,8 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     void Start()
     {
-        Application.targetFrameRate = 30;
-        Screen.SetResolution(1280, 720, FullScreenMode.Windowed, 60);
+        Application.targetFrameRate = 60;
+        Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen, 60);
     }
     public void playGame()
     {

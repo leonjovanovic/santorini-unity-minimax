@@ -5,6 +5,7 @@ using UnityEngine;
 public class Figure : MonoBehaviour
 {
     private Table table;
+    public int x, y, new_x, new_y;
 
     // Start is called before the first frame update
     void Start()
@@ -51,8 +52,8 @@ public class Figure : MonoBehaviour
         {
             if (table.selected != "empty")
             {
-                GameObject select = GameObject.Find(table.selected);
-                table.erase_highlighted((int)select.transform.position.x, (int)select.transform.position.z);
+                Figure select = GameObject.Find(table.selected).GetComponent<Figure>();
+                table.erase_highlighted(select.x, select.y);
             }
             table.selected = this.name;
             List<GameObject> temp = possible_moves();//lista Cube-ova
@@ -68,7 +69,7 @@ public class Figure : MonoBehaviour
 
     public List<GameObject> possible_moves()
     {
-        int x = (int)gameObject.transform.position.x, y = (int)gameObject.transform.position.z;
+        //int x = x, y = y;
         List<GameObject> ret = new List<GameObject>();
         for (int i = x - 1; i <= x + 1; i++)
             for (int j = y - 1; j <= y + 1; j++)
@@ -77,7 +78,7 @@ public class Figure : MonoBehaviour
                     continue;
                 if (x == i && y == j)
                     continue;
-                TileButton temp = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>();
+                TileButton temp = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
                 if (temp.possible_to_move(gameObject))
                 {
                     ret.Add(temp.gameObject);//Dodajemo Cube
@@ -90,7 +91,7 @@ public class Figure : MonoBehaviour
     
     public bool is_movable()
     {
-        int fx = (int)gameObject.transform.position.x, fy = (int)gameObject.transform.position.z;
+        int fx = x, fy = y;
         for (int i = fx - 1; i <= fx + 1; i++)
             for (int j = fy - 1; j <= fy + 1; j++)
             {
@@ -98,7 +99,9 @@ public class Figure : MonoBehaviour
                     continue;
                 if (fx == i && fy == j)
                     continue;
-                if (GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().possible_to_move(gameObject))
+               /*if (GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<TileButton>().possible_to_move(gameObject))
+                    return true;*/
+                if (GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().possible_to_move(gameObject))
                     return true;
             }
         return false;

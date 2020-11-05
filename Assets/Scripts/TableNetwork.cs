@@ -26,8 +26,8 @@ public class TableNetwork : NetworkBehaviour
     void Start()
     {
 
-        Application.targetFrameRate = 30;
-        Screen.SetResolution(1920, 1080, false);
+        Application.targetFrameRate = 60;
+        Screen.SetResolution(1920, 1080, true);
 
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < 5; j++)

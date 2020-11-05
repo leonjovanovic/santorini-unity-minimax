@@ -44,7 +44,7 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
             System.Random rnd = new System.Random();
             int x = rnd.Next(0, 4);
             int y = rnd.Next(0, 4);
-            GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().set_up_figurines();
+            GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().set_up_figurines();
             //Druga figurica prvog igraca
             int x1 = rnd.Next(0, 4);
             int y1 = rnd.Next(0, 4);
@@ -53,58 +53,13 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
                 x1 = rnd.Next(0, 4);
                 y1 = rnd.Next(0, 4);
             }
-            GameObject.Find("Tile" + x1 + "" + y1 + "/Cube - Visual").GetComponent<TileButton>().set_up_figurines();
+            GameObject.Find("Tile" + x1 + "" + y1).GetComponent<TileButton>().set_up_figurines();
         }
         else
         {   //Prva figurica drugog igraca
-            int x = Math.Abs((int)(GameObject.Find("Player11").transform.position.x + GameObject.Find("Player12").transform.position.x) / 2), x1 = x;
-            int y = Math.Abs((int)(GameObject.Find("Player11").transform.position.z + GameObject.Find("Player12").transform.position.z) / 2), y1 = y;
-            while (GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().busy)
-            {
-                if (x == 4)
-                {
-                    x--; continue;
-                }
-                if (x == 0)
-                {
-                    x++; continue;
-                }
-                if (y == 4)
-                {
-                    y--; continue;
-                }
-                if (y == 0)
-                {
-                    y++; continue;
-                }
-                if (x == 3) x--;
-                else x++;
-            }
-            GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().set_up_figurines();
-            //Druga figurica drugog igraca
-            x = x1; y = y1;//Da bi menjao y od pocetnih pozicija
-            while (GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().busy)
-            {
-                if (x == 4)
-                {
-                    x--; continue;
-                }
-                if (x == 0)
-                {
-                    x++; continue;
-                }
-                if (y == 4)
-                {
-                    y--; continue;
-                }
-                if (y == 0)
-                {
-                    y++; continue;
-                }
-                if (y == 3) y--;
-                else y++;
-            }
-            GameObject.Find("Tile" + x + "" + y + "/Cube - Visual").GetComponent<TileButton>().set_up_figurines();
+            int x = Math.Abs((int)(GameObject.Find("Player11").GetComponent<Figure>().x + GameObject.Find("Player12").GetComponent<Figure>().x) / 2), x1 = x;
+            int y = Math.Abs((int)(GameObject.Find("Player11").GetComponent<Figure>().y + GameObject.Find("Player12").GetComponent<Figure>().y) / 2), y1 = y;
+            findFreeSpots(x, y);
         }
     }
 
@@ -172,5 +127,44 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
             }
             return node.f_score;
         }
+    }
+
+    private void findFreeSpots(int x, int y)
+    {
+        bool found1 = false, found2 = false;
+        if (GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().busy)
+        {
+            for (int i = x - 1; (i <= x + 1) && !found1; i++)
+                for (int j = y - 1; j <= y + 1; j++)
+                {
+                    if (!table.field_exist(i, j))
+                        continue;
+                    if (x == i && y == j)
+                        continue;
+                    if (!GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy)
+                    {
+                        GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().set_up_figurines();
+                        found1 = true;
+                    }
+                }
+        }
+        else
+        {
+            GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().set_up_figurines();
+        }
+        for (int i = x - 1; (i <= x + 1) && !found2; i++)
+            for (int j = y - 1; j <= y + 1; j++)
+            {
+                if (!table.field_exist(i, j))
+                    continue;
+                if (x == i && y == j)
+                    continue;
+                if (!GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy)
+                {
+                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().set_up_figurines();
+                    found2 = true;
+                }
+            }
+
     }
 }
