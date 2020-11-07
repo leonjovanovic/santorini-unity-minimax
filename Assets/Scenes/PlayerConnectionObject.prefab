@@ -57,13 +57,13 @@ MonoBehaviour:
   Figure12: {fileID: 0}
   Figure21: {fileID: 0}
   Figure22: {fileID: 0}
-  tableNetwork: {fileID: 3837692149762745665, guid: 2f727579c39e159468dfa045b2df9b74,
+  tableNetwork: {fileID: 2222717165904022333, guid: 2f727579c39e159468dfa045b2df9b74,
     type: 3}
   spawn11: 0
   spawn12: 0
   spawn21: 0
   spawn22: 0
-  table: {fileID: 3837692149762745665, guid: 2f727579c39e159468dfa045b2df9b74, type: 3}
+  table: {fileID: 2222717165904022333, guid: 2f727579c39e159468dfa045b2df9b74, type: 3}
 --- !u!114 &8765715008171078225
 MonoBehaviour:
   m_ObjectHideFlags: 0

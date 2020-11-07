@@ -16,6 +16,7 @@ public class TileButtonNetwork : MonoBehaviour
     void Start()
     {
         init_flag = true;
+        table = this.transform.parent.GetComponent<TableNetwork>();
     }
 
     // Update is called once per frame
@@ -43,13 +44,12 @@ public class TileButtonNetwork : MonoBehaviour
                 Debug.Log("MOVE");
                 GameObject tempObj = GameObject.Find(table.selected);
                 if (!table.turns(tempObj.name) || !possible_to_move(tempObj)) yield break;
-                tempObj = tempObj.transform.parent.gameObject;
-                curr_player.changeBusy((int)tempObj.transform.position.x, (int)tempObj.transform.position.z, false);
-                TileButtonNetwork temp = GameObject.Find("Tile" + (int)tempObj.transform.position.x + "" + (int)tempObj.transform.position.z).GetComponent<TileButtonNetwork>();
+                curr_player.changeBusy(tempObj.GetComponent<PlayerUnit>().x, tempObj.GetComponent<PlayerUnit>().y, false);
+                TileButtonNetwork temp = GameObject.Find("Tile" + tempObj.GetComponent<PlayerUnit>().x + "" + tempObj.GetComponent<PlayerUnit>().y).GetComponent<TileButtonNetwork>();
 
                 yield return new WaitUntil(() => temp.busy == false);//Ovo mora da bi sacekali da server postavi na false jer cemo u highlight_build ispitivati to
 
-                unitNetwork.CmdEraseHighlight((int)tempObj.transform.position.x, (int)tempObj.transform.position.z);
+                unitNetwork.CmdEraseHighlight(tempObj.GetComponent<PlayerUnit>().x, tempObj.GetComponent<PlayerUnit>().y);
 
                 if (height == 3)
                     if (table.turn) curr_player.CmdWon(1);
@@ -73,8 +73,8 @@ public class TileButtonNetwork : MonoBehaviour
                 Debug.Log("BUILD");
                 
                 if (!possible_to_build()) yield break;
-                GameObject select = GameObject.Find(table.selected).transform.parent.gameObject;
-                unitNetwork.CmdEraseHighlight((int)select.transform.position.x, (int)select.transform.position.z);
+                GameObject tempObj = GameObject.Find(table.selected);
+                unitNetwork.CmdEraseHighlight(tempObj.GetComponent<PlayerUnit>().x, tempObj.GetComponent<PlayerUnit>().y);
                 curr_player.CmdBuild(x,y);
 
                 curr_player.changeBuild(false);
@@ -160,7 +160,7 @@ public class TileButtonNetwork : MonoBehaviour
 
     public bool possible_to_move(GameObject obj)//Prosledjujemo figuru da li moze da se pomeri na (this) polje
     {
-        TileButtonNetwork oldTile = GameObject.Find("Tile" + obj.transform.position.x + "" + obj.transform.position.z).GetComponent<TileButtonNetwork>();
+        TileButtonNetwork oldTile = GameObject.Find("Tile" + obj.GetComponent<PlayerUnit>().x + "" + obj.GetComponent<PlayerUnit>().y).GetComponent<TileButtonNetwork>();
         int oldH = oldTile.height, oldX = oldTile.x, oldY = oldTile.y;
         if (height - oldH > 1 || busy || Mathf.Abs(oldX - x) > 1 || Mathf.Abs(oldY - y) > 1 || (oldX == x && oldY == y) || height == 4)
             return false;
@@ -210,7 +210,7 @@ public class TileButtonNetwork : MonoBehaviour
                     continue;
                 if (x == i && y == j)
                     continue;
-                TileButtonNetwork temp = GameObject.Find("The Board(Clone)/Tile" + i + "" + j).GetComponent<TileButtonNetwork>();
+                TileButtonNetwork temp = GameObject.Find("The Board Network(Clone)/Tile" + i + "" + j).GetComponent<TileButtonNetwork>();
                 if (temp.possible_to_build())
                 {
                     ret.Add(temp.gameObject);//Dodajemo Cube

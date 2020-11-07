@@ -9,6 +9,7 @@ public class PlayerUnit : MonoBehaviour
     public TableNetwork table;
     public PlayerUnitPrefab unitNetwork;
     private bool init_flag, server;
+    public int x, y;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,6 @@ public class PlayerUnit : MonoBehaviour
         {
             init();
         }
-        //Debug.Log(this.name);
 
         if (!table.build && table.turns(this.name) && table.start)
         {
@@ -40,8 +40,8 @@ public class PlayerUnit : MonoBehaviour
 
             if (table.selected != "empty")//ako je neki vec selektovan, prvo da izbrisemo njega
             {
-                GameObject select = GameObject.Find(table.selected).transform.parent.gameObject;
-                unitNetwork.CmdEraseHighlight((int)select.transform.position.x, (int)select.transform.position.z);
+                GameObject select = GameObject.Find(table.selected);
+                unitNetwork.CmdEraseHighlight(x, y);
             }  //a onda da highlajtujemo naseg
             unitNetwork.CmdChangeSelected(this.name);
 
@@ -69,7 +69,7 @@ public class PlayerUnit : MonoBehaviour
             server = false;
             unitNetwork = GameObject.Find("PlayerConnectionObject2").GetComponent<PlayerUnitPrefab>();
         }
-        table = GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>();
+        table = GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>();
     }
 
     public List<GameObject> possible_moves()
@@ -83,7 +83,7 @@ public class PlayerUnit : MonoBehaviour
                     continue;
                 if (x == i && y == j) //ako smo to mi
                     continue;
-                TileButtonNetwork temp = GameObject.Find("The Board(Clone)/Tile" + i + "" + j ).GetComponent<TileButtonNetwork>();
+                TileButtonNetwork temp = GameObject.Find("The Board Network(Clone)/Tile" + i + "" + j ).GetComponent<TileButtonNetwork>();
                 if (temp.possible_to_move(gameObject))
                 {
                     //Debug.Log("X: " + i + "Y: " + j);

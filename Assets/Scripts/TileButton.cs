@@ -10,7 +10,6 @@ public class TileButton : MonoBehaviour
     public Table table;
     public int x, y, height;
     public bool busy;
-    public ExamplePlayerScript player;
 
 
     // Start is called before the first frame update

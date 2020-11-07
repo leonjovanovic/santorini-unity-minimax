@@ -17,6 +17,6 @@ public class LevelButtonNetwork : MonoBehaviour
     }
     void OnMouseDown()
     {
-        StartCoroutine(GameObject.Find(gameObject.transform.parent.transform.parent.transform.parent.name).GetComponent<TileButtonNetwork>().OnMouseDown()); // mora preko StartCoroutine jer je specificna funkcija
+        StartCoroutine(gameObject.transform.parent.transform.parent.GetComponent<TileButtonNetwork>().OnMouseDown()); // mora preko StartCoroutine jer je specificna funkcija
     }
 }

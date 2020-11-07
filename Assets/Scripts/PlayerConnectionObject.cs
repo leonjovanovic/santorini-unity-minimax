@@ -33,7 +33,7 @@ public class PlayerConnectionObject : NetworkBehaviour
         {
             this.name = "PlayerConnectionObject2"; 
         }
-        table = GameObject.Find("The Board(Clone)");
+        table = GameObject.Find("The Board Network(Clone)");
     }
 
     // Update is called once per frame
@@ -64,14 +64,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     void CmdChangeBusy(int x, int y, bool t)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().busy[x, y] = t;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().busy[x, y] = t;
         RpcChangeSpawn(x, y, t);
     }
     
     [ClientRpc]
     void RpcChangeSpawn(int x, int y, bool t)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().busy[x, y] = t;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().busy[x, y] = t;
     }
     //------------------------------------------------------------------------------------------
 
@@ -79,15 +79,15 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     public void CmdChangeTurn()
     {
-        bool temp = GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().turn;
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().turn = !temp;
+        bool temp = GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().turn;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().turn = !temp;
         RpcChangeTurn(temp);
     }
 
     [ClientRpc]
     void RpcChangeTurn(bool temp)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().turn = !temp;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().turn = !temp;
     }
     //------------------------------------------------------------------------------------------
 
@@ -101,14 +101,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     void CmdChangeBuild(bool t)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().build = t;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().build = t;
         RpcChangeBuild(t);
     }
 
     [ClientRpc]
     void RpcChangeBuild(bool t)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().build = t;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().build = t;
     }
     //------------------------------------------------------------------------------------------
 
@@ -116,14 +116,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     public void CmdChangeMoved(string temp)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().moved = temp;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().moved = temp;
         RpcChangeMoved(temp);
     }
 
     [ClientRpc]
     void RpcChangeMoved(string temp)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().moved = temp;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().moved = temp;
     }
     //------------------------------------------------------------------------------------------
 
@@ -132,9 +132,9 @@ public class PlayerConnectionObject : NetworkBehaviour
     public void CmdBuild(int x, int y)
     {
         int height = ++GameObject.Find("Tile" + x + "" + y).GetComponent<TileButtonNetwork>().height;
-        string tileName = "Tile" + x + "" + y + "/Cube - Visual/Level" + height + "/Level" + height;
+        string tileName = "Tile" + x + "" + y + "/house/Level" + height;
         GameObject level = GameObject.Find(tileName);
-        level.GetComponent<Renderer>().enabled = true;
+        level.SetActive(true);
         level.layer = 0;
         level.transform.parent.gameObject.layer = 0;
 
@@ -145,9 +145,9 @@ public class PlayerConnectionObject : NetworkBehaviour
     void RpcBuild(int x, int y, int height)
     {
         GameObject.Find("Tile" + x + "" + y).GetComponent<TileButtonNetwork>().height = height;
-        string tileName = "Tile" + x + "" + y + "/Cube - Visual/Level" + height + "/Level" + height;
+        string tileName = "Tile" + x + "" + y + "/house/Level" + height;
         GameObject level = GameObject.Find(tileName);
-        level.GetComponent<Renderer>().enabled = true;
+        level.SetActive(true);
         level.layer = 0;
         level.transform.parent.gameObject.layer = 0;
     }
@@ -187,14 +187,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     void CmdChangeP11()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p11 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p11 = false;
         RpcChangeP11();
     }
 
     [ClientRpc]
     void RpcChangeP11()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p11 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p11 = false;
     }
     //------------------------------------------------------------------------------------------
 
@@ -207,14 +207,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     void CmdChangeP12()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p12 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p12 = false;
         RpcChangeP12();
     }
 
     [ClientRpc]
     void RpcChangeP12()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p12 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p12 = false;
     }
     //------------------------------------------------------------------------------------------
 
@@ -227,14 +227,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     void CmdChangeP21()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p21 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p21 = false;
         RpcChangeP21();
     }
 
     [ClientRpc]
     void RpcChangeP21()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p21 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p21 = false;
     }
     //------------------------------------------------------------------------------------------
 
@@ -247,14 +247,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     void CmdChangeP22()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p22 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p22 = false;
         RpcChangeP22();
     }
 
     [ClientRpc]
     void RpcChangeP22()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().p22 = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().p22 = false;
     }
     //------------------------------------------------------------------------------------------
 
@@ -377,6 +377,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     {
         if (!hasAuthority) return;
         Figure11.transform.position = new Vector3(x,z,y);
+        Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
         RpcMove11(x,z,y);
     }
 
@@ -384,6 +386,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     void RpcMove11(int x, float z, int y)
     {
         Figure11.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }
     //------------------------------------------------------------------------------------------
 
@@ -393,6 +397,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     {
         if (!hasAuthority) return;
         Figure12.transform.position = new Vector3(x, z, y);
+        Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
         RpcMove12(x,z,y);
     }
 
@@ -400,6 +406,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     void RpcMove12(int x, float z, int y)
     {
         Figure12.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }
     //------------------------------------------------------------------------------------------
 
@@ -409,6 +417,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     {
         if (hasAuthority) return;
         Figure21.transform.position = new Vector3(x, z, y);
+        Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
         RpcMove21(x,z,y);
     }
 
@@ -416,6 +426,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     void RpcMove21(int x, float z, int y)
     {
         Figure21.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }
     //------------------------------------------------------------------------------------------
 
@@ -425,6 +437,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     {
         if (hasAuthority) return;
         Figure22.transform.position = new Vector3(x, z, y);
+        Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
         RpcMove22(x,z,y);
     }
 
@@ -432,6 +446,8 @@ public class PlayerConnectionObject : NetworkBehaviour
     void RpcMove22(int x, float z, int y)
     {
         Figure22.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
+        Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }
     //------------------------------------------------------------------------------------------
 
@@ -439,14 +455,14 @@ public class PlayerConnectionObject : NetworkBehaviour
     [Command]
     public void CmdStartPlaying()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().start = true;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().start = true;
         RpcStartPlaying();
     }
 
     [ClientRpc]
     void RpcStartPlaying()
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().start = true;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().start = true;
     }
     //------------------------------------------------------------------------------------------
 }

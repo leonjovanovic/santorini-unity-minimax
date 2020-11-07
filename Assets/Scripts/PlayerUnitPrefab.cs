@@ -22,14 +22,14 @@ public class PlayerUnitPrefab : NetworkBehaviour
     [Command]
     public void CmdChangeSelected(string name)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().selected = name;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().selected = name;
         RpcChangeSelected(name);
     }
 
     [ClientRpc]
     void RpcChangeSelected(string name)
     {
-        GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().selected = name;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().selected = name;
     }
     //------------------------------------------------------------------------------------------
 
@@ -37,20 +37,21 @@ public class PlayerUnitPrefab : NetworkBehaviour
     [Command]
     public void CmdHighlightTiles(string name)
     {
-        GameObject temp = GameObject.Find("The Board(Clone)/"+name);
-        Material[] matArray = temp.GetComponentInChildren<Renderer>().materials;
-        matArray[1] = GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().highlight;
-        temp.GetComponentInChildren<Renderer>().materials = matArray;
+        GameObject temp = GameObject.Find("The Board Network(Clone)/" + name);
+        Debug.Log(temp.name);
+        Material[] matArray = temp.GetComponent<Renderer>().materials;
+        matArray[1] = GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().highlight;
+        temp.GetComponent<Renderer>().materials = matArray;
         RpcHighlightTiles(name);
     }
 
     [ClientRpc]
     void RpcHighlightTiles(string name)
     {
-        GameObject temp = GameObject.Find("The Board(Clone)/" + name);
-        Material[] matArray = temp.GetComponentInChildren<Renderer>().materials;
-        matArray[1] = GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().highlight;
-        temp.GetComponentInChildren<Renderer>().materials = matArray;
+        GameObject temp = GameObject.Find("The Board Network(Clone)/" + name);
+        Material[] matArray = temp.GetComponent<Renderer>().materials;
+        matArray[1] = GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().highlight;
+        temp.GetComponent<Renderer>().materials = matArray;
     }
     //------------------------------------------------------------------------------------------
 
@@ -62,11 +63,11 @@ public class PlayerUnitPrefab : NetworkBehaviour
         for (int i = oldX - 1; i <= oldX + 1; i++)
             for (int j = oldY - 1; j <= oldY + 1; j++)
             {
-                if (!GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().field_exist(i, j))
+                if (!GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().field_exist(i, j))
                     continue;
                 if (oldX == i && oldY == j)
                     continue;
-                Renderer temp = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<Renderer>();
+                Renderer temp = GameObject.Find("Tile" + i + "" + j).GetComponent<Renderer>();
                 Material[] matArray = temp.materials;
                 matArray[1] = null;
                 temp.materials = matArray;
@@ -82,11 +83,11 @@ public class PlayerUnitPrefab : NetworkBehaviour
         for (int i = oldX - 1; i <= oldX + 1; i++)
             for (int j = oldY - 1; j <= oldY + 1; j++)
             {
-                if (!GameObject.Find("The Board(Clone)").GetComponent<TableNetwork>().field_exist(i, j))
+                if (!GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().field_exist(i, j))
                     continue;
                 if (oldX == i && oldY == j)
                     continue;
-                Renderer temp = GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").GetComponent<Renderer>();
+                Renderer temp = GameObject.Find("Tile" + i + "" + j).GetComponent<Renderer>();
                 Material[] matArray = temp.materials;
                 matArray[1] = null;
                 temp.materials = matArray;
