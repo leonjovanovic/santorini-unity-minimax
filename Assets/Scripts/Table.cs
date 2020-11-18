@@ -55,15 +55,7 @@ public class Table : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            for (int i = 1; i < 3; i++)
-                for (int j = 1; j < 3; j++)
-                    GameObject.Find("Player" + i + "" + j).GetComponent<Figure>().enabled = false;
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                {
-                    //GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").layer = 2;
-                    GameObject.Find("Tile" + i + "" + j).layer = 2;
-                }
+            turnOffBoard();
             GameObject.Find("CanvasExit").GetComponent<Canvas>().enabled = true;
         }
     }
@@ -106,9 +98,7 @@ public class Table : MonoBehaviour
     {
         gameOver = true;
         string temp = "PLAYER " + id + " IS WINNER!";
-        for (int i = 1; i < 3; i++)
-            for (int j = 1; j < 3; j++)
-                GameObject.Find("Player" + i + "" + j).GetComponent<Figure>().enabled = false;
+        turnOffBoard();
         GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>().text = temp;
         GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
         PlayerAI[0] = null; PlayerAI[1] = null;
@@ -599,5 +589,37 @@ public class Table : MonoBehaviour
         build = undo_build;
         turn = undo_turn;
         selected = undo_selected;
+    }
+
+    public void turnOffBoard()
+    {
+        for (int i = 1; i < 3; i++)
+            for (int j = 1; j < 3; j++)
+                GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = false;
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 5; j++)
+            {
+                GameObject.Find("Tile" + i + "" + j).GetComponent<BoxCollider>().enabled = false;
+                for (int k = 1; k < 4; k++)
+                {
+                    GameObject.Find("Tile" + i + "" + j + "/house/Level"+k).GetComponent<BoxCollider>().enabled = false;
+                }
+            }
+    }
+
+    public void turnOnBoard()
+    {
+        for (int i = 1; i < 3; i++)
+            for (int j = 1; j < 3; j++)
+                GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = true;
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 5; j++)
+            {
+                GameObject.Find("Tile" + i + "" + j).GetComponent<BoxCollider>().enabled = true;
+                for (int k = 1; k < 4; k++)
+                {
+                    GameObject.Find("Tile" + i + "" + j + "/house/Level" + k).GetComponent<BoxCollider>().enabled = true;
+                }
+            }
     }
 }

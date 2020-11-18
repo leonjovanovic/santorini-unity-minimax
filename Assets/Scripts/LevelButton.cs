@@ -25,7 +25,7 @@ public class LevelButton : MonoBehaviour
     //Post Blender
     void OnMouseDown()
     {
-        Debug.Log(gameObject.name);
-        gameObject.transform.parent.transform.parent.GetComponent<TileButton>().OnMouseDown();
+        if(LevelLoader.mode != 4) gameObject.transform.parent.transform.parent.GetComponent<TileButton>().OnMouseDown();
+        else StartCoroutine(gameObject.transform.parent.transform.parent.GetComponent<TileButtonNetwork>().OnMouseDown()); // mora preko StartCoroutine jer je specificna funkcija
     }
 }

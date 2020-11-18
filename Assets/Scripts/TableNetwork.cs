@@ -47,14 +47,7 @@ public class TableNetwork : NetworkBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            /*for (int i = 1; i < 3; i++)
-                for (int j = 1; j < 3; j++)
-                    GameObject.Find("Player" + i + "" + j).GetComponent<Figure>().enabled = false;
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                {
-                    GameObject.Find("Tile" + i + "" + j + "/Cube - Visual").layer = 2;
-                }*/
+            turnOffBoard();
             GameObject.Find("CanvasExit").GetComponent<Canvas>().enabled = true;
         }
     }
@@ -74,6 +67,38 @@ public class TableNetwork : NetworkBehaviour
         if (x > 4 || x < 0 || y > 4 || y < 0)
             return false;
         return true;
+    }
+
+    public void turnOffBoard()
+    {
+        for (int i = 1; i < 3; i++)
+            for (int j = 1; j < 3; j++)
+                if (GameObject.Find("Player" + i + "" + j) != null) GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = false;
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 5; j++)
+            {
+                GameObject.Find("Tile" + i + "" + j).GetComponent<BoxCollider>().enabled = false;
+                for (int k = 1; k < 4; k++)
+                {
+                    GameObject.Find("Tile" + i + "" + j + "/house/Level" + k).GetComponent<BoxCollider>().enabled = false;
+                }
+            }
+    }
+
+    public void turnOnBoard()
+    {
+        for (int i = 1; i < 3; i++)
+            for (int j = 1; j < 3; j++)
+                if (GameObject.Find("Player" + i + "" + j) != null) GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = true;
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 5; j++)
+            {
+                GameObject.Find("Tile" + i + "" + j).GetComponent<BoxCollider>().enabled = true;
+                for (int k = 1; k < 4; k++)
+                {
+                    GameObject.Find("Tile" + i + "" + j + "/house/Level" + k).GetComponent<BoxCollider>().enabled = true;
+                }
+            }
     }
 
 }

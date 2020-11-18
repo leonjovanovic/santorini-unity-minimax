@@ -158,9 +158,7 @@ public class PlayerConnectionObject : NetworkBehaviour
     public void CmdWon(int id)
     {
         string temp = "PLAYER " + id + " IS WINNER!";
-        for (int i = 1; i < 3; i++)
-            for (int j = 1; j < 3; j++)
-                GameObject.Find("Player" + i + "" + j).GetComponent<PlayerUnit>().enabled = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().turnOffBoard();
         GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>().text = temp;
         GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
         RpcWon(id);
@@ -170,9 +168,7 @@ public class PlayerConnectionObject : NetworkBehaviour
     void RpcWon(int id)
     {
         string temp = "PLAYER " + id + " IS WINNER!";
-        for (int i = 1; i < 3; i++)
-            for (int j = 1; j < 3; j++)
-                GameObject.Find("Player" + i + "" + j).GetComponent<PlayerUnit>().enabled = false;
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().turnOffBoard();
         GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>().text = temp;
         GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
     }
@@ -347,22 +343,21 @@ public class PlayerConnectionObject : NetworkBehaviour
     //------------------------------------------------------------------------------------------
 
     //------------------------------------MOVE FIGURE 11----------------------------------------
-    public void move(string name, int x, float tmp, int y)
+    public void move(string name, int x, float tmp, int y, float mov_y)
     {
-        Vector3 temp = new Vector3(x,tmp,y);
         switch(name.Substring(name.Length - 2))//poslednja 2 slova od Player11
         {
             case "11":
-                CmdMove11(x, tmp, y);
+                CmdMove11(x, tmp, y, mov_y);
                 break;
             case "12":
-                CmdMove12(x, tmp, y);
+                CmdMove12(x, tmp, y, mov_y);
                 break;
             case "21":
-                CmdMove21(x, tmp, y);
+                CmdMove21(x, tmp, y, mov_y);
                 break;
             case "22":
-                CmdMove22(x, tmp, y);
+                CmdMove22(x, tmp, y, mov_y);
                 break;
             default: 
                 Debug.Log("ERROR");
@@ -373,19 +368,19 @@ public class PlayerConnectionObject : NetworkBehaviour
 
     //------------------------------------MOVE FIGURE 11----------------------------------------
     [Command]
-    public void CmdMove11(int x, float z, int y)
+    public void CmdMove11(int x, float z, int y, float mov_y)
     {
         if (!hasAuthority) return;
-        Figure11.transform.position = new Vector3(x,z,y);
+        Figure11.transform.position = new Vector3(x,z, mov_y);
         Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
-        RpcMove11(x,z,y);
+        RpcMove11(x,z,y, mov_y);
     }
 
     [ClientRpc]
-    void RpcMove11(int x, float z, int y)
+    void RpcMove11(int x, float z, int y, float mov_y)
     {
-        Figure11.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure11.transform.position = new Vector3(x, z, mov_y);//Nepotrebno?
         Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure11.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }
@@ -393,19 +388,19 @@ public class PlayerConnectionObject : NetworkBehaviour
 
     //------------------------------------MOVE FIGURE 12----------------------------------------
     [Command]
-    public void CmdMove12(int x, float z, int y)
+    public void CmdMove12(int x, float z, int y, float mov_y)
     {
         if (!hasAuthority) return;
-        Figure12.transform.position = new Vector3(x, z, y);
+        Figure12.transform.position = new Vector3(x, z, mov_y);
         Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
-        RpcMove12(x,z,y);
+        RpcMove12(x,z,y, mov_y);
     }
 
     [ClientRpc]
-    void RpcMove12(int x, float z, int y)
+    void RpcMove12(int x, float z, int y, float mov_y)
     {
-        Figure12.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure12.transform.position = new Vector3(x, z, mov_y);//Nepotrebno?
         Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure12.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }
@@ -413,19 +408,19 @@ public class PlayerConnectionObject : NetworkBehaviour
 
     //------------------------------------MOVE FIGURE 21----------------------------------------
     [Command]
-    public void CmdMove21(int x, float z, int y)
+    public void CmdMove21(int x, float z, int y, float mov_y)
     {
         if (hasAuthority) return;
-        Figure21.transform.position = new Vector3(x, z, y);
+        Figure21.transform.position = new Vector3(x, z, mov_y);
         Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
-        RpcMove21(x,z,y);
+        RpcMove21(x,z,y, mov_y);
     }
 
     [ClientRpc]
-    void RpcMove21(int x, float z, int y)
+    void RpcMove21(int x, float z, int y, float mov_y)
     {
-        Figure21.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure21.transform.position = new Vector3(x, z, mov_y);//Nepotrebno?
         Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure21.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }
@@ -433,19 +428,19 @@ public class PlayerConnectionObject : NetworkBehaviour
 
     //------------------------------------MOVE FIGURE 22----------------------------------------
     [Command]
-    public void CmdMove22(int x, float z, int y)
+    public void CmdMove22(int x, float z, int y, float mov_y)
     {
         if (hasAuthority) return;
-        Figure22.transform.position = new Vector3(x, z, y);
+        Figure22.transform.position = new Vector3(x, z, mov_y);
         Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
-        RpcMove22(x,z,y);
+        RpcMove22(x,z,y, mov_y);
     }
 
     [ClientRpc]
-    void RpcMove22(int x, float z, int y)
+    void RpcMove22(int x, float z, int y, float mov_y)
     {
-        Figure22.transform.position = new Vector3(x, z, y);//Nepotrebno?
+        Figure22.transform.position = new Vector3(x, z, mov_y);//Nepotrebno?
         Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().x = x;
         Figure22.transform.GetChild(0).gameObject.GetComponent<PlayerUnit>().y = y;
     }

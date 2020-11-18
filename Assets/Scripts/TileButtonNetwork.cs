@@ -54,9 +54,10 @@ public class TileButtonNetwork : MonoBehaviour
                 if (height == 3)
                     if (table.turn) curr_player.CmdWon(1);
                     else curr_player.CmdWon(2);
-                float tmp = y_axis(this.height);
+                float tmp_z = y_axis(this.height);
+                float tmp_y = z_axis(this.height);
 
-                curr_player.move(GameObject.Find(table.selected).name, x, tmp, y);
+                curr_player.move(GameObject.Find(table.selected).name, x, tmp_z, y, tmp_y);
 
                 curr_player.changeBusy(x, y, true);
                 curr_player.changeBuild(true);
@@ -107,7 +108,7 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.changeP11();
             curr_player.changeBusy(x, y, true);
             curr_player.CmdSpawnUnit11();
-            curr_player.CmdMove11(x, 0, y);
+            curr_player.CmdMove11(x, 0, y, y);
             return;
         }
         if (table.p12 && isServer)
@@ -116,7 +117,7 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.changeP12();
             curr_player.changeBusy(x, y, true);
             curr_player.CmdSpawnUnit12();
-            curr_player.CmdMove12(x, 0, y);
+            curr_player.CmdMove12(x, 0, y, y);
 
             curr_player.CmdChangeTurn();
             return;
@@ -127,7 +128,7 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.changeP21();
             curr_player.changeBusy(x, y, true);
             curr_player.CmdSpawnUnit21();
-            curr_player.CmdMove21(x, 0, y);
+            curr_player.CmdMove21(x, 0, y, y);
             return;
         }
         if (table.p22 && !isServer && !table.p12)
@@ -136,7 +137,7 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.changeP22();
             curr_player.changeBusy(x, y, true);
             curr_player.CmdSpawnUnit22();
-            curr_player.CmdMove22(x, 0, y);
+            curr_player.CmdMove22(x, 0, y, y);
 
             curr_player.CmdChangeTurn();
             curr_player.CmdStartPlaying();
@@ -173,19 +174,39 @@ public class TileButtonNetwork : MonoBehaviour
         switch (heights)
         {
             case 1:
-                tmp = (float)0.426;
+                tmp = (float)0.7185981;
                 break;
             case 2:
-                tmp = (float)0.863;
+                tmp = (float)1.242;
                 break;
             case 3:
-                tmp = (float)1.279;
+                tmp = (float)1.627;
                 break;
             case 0:
                 tmp = 0;
                 break;
             case 4:
                 tmp = 0;
+                break;
+        }
+        return tmp;
+    }
+
+    public float z_axis(int heights)//moram da prosledjujem height zbog undo-a
+    {
+        float tmp = 0;
+        switch (heights)
+        {
+            case 1:
+            case 2:
+            case 3:
+                tmp = y - 0.1f;
+                break;
+            case 0:
+                tmp = y;
+                break;
+            case 4:
+                tmp = y;
                 break;
         }
         return tmp;

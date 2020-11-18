@@ -40,8 +40,8 @@ public class PlayerUnit : MonoBehaviour
 
             if (table.selected != "empty")//ako je neki vec selektovan, prvo da izbrisemo njega
             {
-                GameObject select = GameObject.Find(table.selected);
-                unitNetwork.CmdEraseHighlight(x, y);
+                PlayerUnit select = GameObject.Find(table.selected).GetComponent<PlayerUnit>(); ;
+                unitNetwork.CmdEraseHighlight(select.x, select.y);
             }  //a onda da highlajtujemo naseg
             unitNetwork.CmdChangeSelected(this.name);
 
