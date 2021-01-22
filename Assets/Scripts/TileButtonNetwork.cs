@@ -180,7 +180,7 @@ public class TileButtonNetwork : MonoBehaviour
                 tmp = (float)1.242;
                 break;
             case 3:
-                tmp = (float)1.627;
+                tmp = (float)1.615;
                 break;
             case 0:
                 tmp = 0;

@@ -142,7 +142,7 @@ public class TileButton : MonoBehaviour
             case 3:
                 tmp.x = x;
                 tmp.z = y - 0.064f;
-                tmp.y = (float)1.627;
+                tmp.y = (float)1.615;
                 break;
             case 0:
                 tmp.x = x;
