@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using cakeslice;
 
 public class PlayerUnit : MonoBehaviour
 {
@@ -20,11 +21,39 @@ public class PlayerUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 100f);
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider != null)
+                {
+                    GameObject touchedObject = hit.transform.gameObject;
+                    if (touchedObject.name == gameObject.name && gameObject.name != table.selected)
+                    {
+                        // Handle finger movements based on TouchPhase
+                        switch (touch.phase)
+                        {
+                            case TouchPhase.Began:
+                                gameObject.GetComponent<Outline>().enabled = true;//-----------------------------------------------------------------------------------
+                                break;
 
+                            case TouchPhase.Ended:
+                                if (gameObject.name != table.selected) gameObject.GetComponent<Outline>().enabled = false;//-------------------------------------------------------------------------------------
+                                break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     void OnMouseDown() //kada kliknemo figuricu
     {
+        gameObject.GetComponent<Outline>().enabled = true;//----------------------------------------------------------------------------------------
         if (init_flag)
         {
             init();
@@ -40,6 +69,7 @@ public class PlayerUnit : MonoBehaviour
 
             if (table.selected != "empty")//ako je neki vec selektovan, prvo da izbrisemo njega
             {
+                GameObject.Find(table.selected).GetComponent<Outline>().enabled = false;//----------------------------------------------------------
                 PlayerUnit select = GameObject.Find(table.selected).GetComponent<PlayerUnit>(); ;
                 unitNetwork.CmdEraseHighlight(select.x, select.y);
             }  //a onda da highlajtujemo naseg
@@ -50,8 +80,7 @@ public class PlayerUnit : MonoBehaviour
             if (temp == null) return;
             for (int i = 0; i < temp.Count; i++)
             {
-                //Debug.Log(temp[i].name);
-                unitNetwork.CmdHighlightTiles(temp[i].name);
+                unitNetwork.CmdHighlightMoveTiles(temp[i].name, temp[i].GetComponent<TileButtonNetwork>().height);
             }
         }
     }
@@ -74,7 +103,6 @@ public class PlayerUnit : MonoBehaviour
 
     public List<GameObject> possible_moves()
     {
-        int x = (int)gameObject.transform.position.x, y = (int)gameObject.transform.position.z;
         List<GameObject> ret = new List<GameObject>();
         for (int i = x - 1; i <= x + 1; i++)
             for (int j = y - 1; j <= y + 1; j++)
@@ -83,10 +111,10 @@ public class PlayerUnit : MonoBehaviour
                     continue;
                 if (x == i && y == j) //ako smo to mi
                     continue;
+
                 TileButtonNetwork temp = GameObject.Find("The Board Network(Clone)/Tile" + i + "" + j ).GetComponent<TileButtonNetwork>();
                 if (temp.possible_to_move(gameObject))
                 {
-                    //Debug.Log("X: " + i + "Y: " + j);
                     ret.Add(temp.gameObject);//Dodajemo Cube
                 }
             }

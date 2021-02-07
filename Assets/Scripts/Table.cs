@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using cakeslice;
 
 public class Table : MonoBehaviour
 {
     public bool start, p11, p12, p21, p22, build, turn, gameOver;//turn=true je prvi igrac
     public string selected, moved;
-    public Material highlight, highlightHover;
+    public Material highlight_moves, highlight_builds;//, highlightHover;
     public GameObject player11, player12, player21, player22;// da bi u Figure.Update() ne bi stalno trazili
     public AI[] PlayerAI;
     public int cnt;
     public long time, num;
+    private bool outline_flag = true;
 
     public char[,] undo_state;
     public bool undo_start, undo_p11, undo_p12, undo_p21, undo_p22, undo_build, undo_turn;
@@ -30,8 +32,9 @@ public class Table : MonoBehaviour
         turn = true;
         gameOver = false;
         selected = "empty";
-        highlight = Resources.Load("PossibleTiles") as Material;
-        highlightHover = Resources.Load("Outline") as Material;
+        highlight_moves = Resources.Load("PossibleTilesMove") as Material;
+        highlight_builds = Resources.Load("PossibleTilesBuild") as Material;
+        //highlightHover = Resources.Load("Outline") as Material;
         player11 = GameObject.Find("Player11");
         player12 = GameObject.Find("Player12");
         player21 = GameObject.Find("Player21");
@@ -58,6 +61,32 @@ public class Table : MonoBehaviour
             turnOffBoard();
             GameObject.Find("CanvasExit").GetComponent<Canvas>().enabled = true;
         }
+        if (turn)//Za crveno/plavno outline
+        {
+            if (outline_flag)
+            {
+                outline_flag = false;
+                player21.GetComponent<Outline>().enabled = false;
+                player22.GetComponent<Outline>().enabled = false;
+                player11.GetComponent<Outline>().color = 0;
+                player12.GetComponent<Outline>().color = 0;
+                player21.GetComponent<Outline>().color = 1;
+                player22.GetComponent<Outline>().color = 1;
+            }
+        }
+        else
+        {
+            if (!outline_flag)
+            {
+                outline_flag = true;
+                player11.GetComponent<Outline>().enabled = false;
+                player12.GetComponent<Outline>().enabled = false;
+                player11.GetComponent<Outline>().color = 1;
+                player12.GetComponent<Outline>().color = 1;
+                player21.GetComponent<Outline>().color = 0;
+                player22.GetComponent<Outline>().color = 0;
+            }
+        }
     }
 
     public bool field_exist(int x, int y)
@@ -78,7 +107,9 @@ public class Table : MonoBehaviour
     
     public void erase_highlighted(int x, int y)
     {
-        //print(obj.transform.parent.name);
+        int top_level = 0;
+        GameObject go = null;
+        Renderer temp = null;
         int oldX = x, oldY = y;
         for (int i = oldX - 1; i <= oldX + 1; i++)
             for (int j = oldY - 1; j <= oldY + 1; j++)
@@ -87,7 +118,11 @@ public class Table : MonoBehaviour
                     continue;
                 if (oldX == i && oldY == j)
                     continue;
-                Renderer temp = GameObject.Find("Tile" + i + "" + j).GetComponent<Renderer>();
+                go = GameObject.Find("Tile" + i + "" + j);
+                top_level = go.GetComponent<TileButton>().height;
+                if (top_level == 4) continue;
+                if(top_level == 0) temp = go.GetComponent<Renderer>();
+                else temp = go.transform.GetChild(0).transform.GetChild(top_level - 1).transform.GetChild(0).GetComponent<Renderer>();
                 Material[] matArray = temp.materials;
                 matArray[1] = null;
                 temp.materials = matArray;
@@ -100,7 +135,7 @@ public class Table : MonoBehaviour
         string temp = "PLAYER " + id + " IS WINNER!";
         turnOffBoard();
         GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>().text = temp;
-        GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("CanvasWinner").GetComponent<Canvas>().enabled = true;
         PlayerAI[0] = null; PlayerAI[1] = null;
         //Debug.Log("Prosecno vreme: " + time / num);
     }
@@ -593,9 +628,9 @@ public class Table : MonoBehaviour
 
     public void turnOffBoard()
     {
-        for (int i = 1; i < 3; i++)
+        /*for (int i = 1; i < 3; i++)
             for (int j = 1; j < 3; j++)
-                GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = false;
+                GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = false;*/
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < 5; j++)
             {
@@ -609,9 +644,9 @@ public class Table : MonoBehaviour
 
     public void turnOnBoard()
     {
-        for (int i = 1; i < 3; i++)
+        /*for (int i = 1; i < 3; i++)
             for (int j = 1; j < 3; j++)
-                GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = true;
+                GameObject.Find("Player" + i + "" + j).GetComponent<MeshCollider>().enabled = true;*/
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < 5; j++)
             {

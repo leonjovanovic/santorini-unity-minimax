@@ -20,7 +20,6 @@ public class TileButton : MonoBehaviour
 
     public void OnMouseDown()
     {
-        //Debug.Log(gameObject.name);
         if (table.start)
         {
             if (table.selected!="empty" && !busy && !table.build )
@@ -132,17 +131,17 @@ public class TileButton : MonoBehaviour
             case 1:
                 tmp.x = x;
                 tmp.z = y - 0.066f;
-                tmp.y = (float)0.7185981;
+                tmp.y = (float)0.692;
                 break;
             case 2:
                 tmp.x = x;
                 tmp.z = y - 0.083f;
-                tmp.y = (float)1.242;
+                tmp.y = (float)1.166;
                 break;
             case 3:
                 tmp.x = x;
-                tmp.z = y - 0.064f;
-                tmp.y = (float)1.615;
+                tmp.z = y - 0.113f;
+                tmp.y = (float)1.6;
                 break;
             case 0:
                 tmp.x = x;
@@ -209,12 +208,23 @@ public class TileButton : MonoBehaviour
 
     public void highlight_builds()
     {
+        int top_level = 0;
         List<GameObject> temp = possible_builds();//lista Cube-ova
         for (int i = 0; i < temp.Count; i++)
         {
-            Material[] matArray = temp[i].GetComponent<Renderer>().materials;
-            matArray[1] = table.highlight;
-            temp[i].GetComponent<Renderer>().materials = matArray;
+            top_level = temp[i].GetComponent<TileButton>().height;
+            if (top_level == 0)
+            {
+                Material[] matArray = temp[i].GetComponent<Renderer>().materials;
+                matArray[1] = table.highlight_builds;
+                temp[i].GetComponent<Renderer>().materials = matArray;
+            }
+            else
+            {
+                Material[] matArray = temp[i].transform.GetChild(0).transform.GetChild(top_level - 1).transform.GetChild(0).GetComponent<Renderer>().materials;
+                matArray[1] = table.highlight_builds;
+                temp[i].transform.GetChild(0).transform.GetChild(top_level - 1).transform.GetChild(0).GetComponent<Renderer>().materials = matArray;
+            }
         }
     }
 }

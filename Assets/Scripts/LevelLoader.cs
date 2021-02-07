@@ -11,6 +11,9 @@ public class LevelLoader : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI progressText;
     public static int mode = 1;
+    public static int previousPlayAgain = 0;
+    public GameObject GameManager;
+
     public void LoadLevel(int sceneIndex)
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
@@ -21,7 +24,12 @@ public class LevelLoader : MonoBehaviour
         mode = i;
     }
 
-    IEnumerator LoadAsynchronously(int sceneIndex)
+    public static void set_previousPlayAgain(int i)
+    {
+        previousPlayAgain = i;
+    }
+
+    public IEnumerator LoadAsynchronously(int sceneIndex)
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneIndex);
 

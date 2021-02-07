@@ -31,7 +31,8 @@ public class PlayerConnectionObject : NetworkBehaviour
         }
         else
         {
-            this.name = "PlayerConnectionObject2"; 
+            this.name = "PlayerConnectionObject2";
+            CmdJoined();
         }
         table = GameObject.Find("The Board Network(Clone)");
     }
@@ -53,6 +54,20 @@ public class PlayerConnectionObject : NetworkBehaviour
             //sta god
         }
     }
+    //-------------------------------------NOTIFY JOINED------------------------------------------
+    [Command]
+    public void CmdJoined()
+    {
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().joined = true;
+        RpcJoined();
+    }
+
+    [ClientRpc]
+    void RpcJoined()
+    {
+        GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().joined = true;
+    }
+    //------------------------------------------------------------------------------------------
 
     //---------------------------------------CHANGE BUSY----------------------------------------
 
@@ -160,7 +175,8 @@ public class PlayerConnectionObject : NetworkBehaviour
         string temp = "PLAYER " + id + " IS WINNER!";
         GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().turnOffBoard();
         GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>().text = temp;
-        GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("CanvasWinner").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("Center").GetComponent<Settings>().toggleOutline(false);
         RpcWon(id);
     }
 
@@ -170,7 +186,8 @@ public class PlayerConnectionObject : NetworkBehaviour
         string temp = "PLAYER " + id + " IS WINNER!";
         GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>().turnOffBoard();
         GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>().text = temp;
-        GameObject.Find("Canvas").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("CanvasWinner").GetComponent<Canvas>().enabled = true;
+        GameObject.Find("Center").GetComponent<Settings>().toggleOutline(false);
     }
     //------------------------------------------------------------------------------------------
 

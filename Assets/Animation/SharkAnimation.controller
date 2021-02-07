@@ -61,9 +61,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 577564544899707476}
     m_Position: {x: 310, y: 80, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3886667869338925134}
-    m_Position: {x: 345, y: 145, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -129,7 +126,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4781951162920444690, guid: 924c71d95ed2d524e89f4e9bcd99e854,
+  m_Motion: {fileID: 4781951162920444690, guid: fd6203b123292ad45b09d834698d3f98,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -158,32 +155,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &3886667869338925134
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: SharkMovement
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d4d874bb660466040990c7577ca66190, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &7353190024736298489
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

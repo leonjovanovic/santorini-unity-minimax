@@ -17,6 +17,8 @@ public class LobbyManager : NetworkBehaviour
     List<GameObject> roomList = new List<GameObject>();
     List<int> roomNumbers = new List<int>();
     System.Random rand;
+    //private int roomNumber = 0000;
+    public GameObject roomNum;
 
     // Start is called before the first frame update
     void Start()
@@ -34,13 +36,10 @@ public class LobbyManager : NetworkBehaviour
 
     public void createRoom()
     {
-        Debug.Log("create1");
         networkManager.StartMatchMaker();
-        Debug.Log("create2");
         int matchNum = generateRoomNumber();
-        Debug.Log("matchNum");
+        roomNum.GetComponent<TMPro.TMP_Text>().text = matchNum.ToString();
         networkManager.matchMaker.CreateMatch(matchNum.ToString(), networkManager.matchSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
-        Debug.Log("matchNum kreirao");
         changeCanvases();
     }
 
@@ -59,11 +58,8 @@ public class LobbyManager : NetworkBehaviour
 
     public void refreshRooms()
     {
-        Debug.Log("refresh1");
         ClearRoomList();
-        Debug.Log("refresh2");
         networkManager.matchMaker.ListMatches(0, 20, "", true, 0, 0, OnMatchList);
-        Debug.Log("refresh3");
     }
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matches)

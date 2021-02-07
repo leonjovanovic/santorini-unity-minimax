@@ -28,20 +28,17 @@ public class TileButtonNetwork : MonoBehaviour
     //Kad kliknemo na njega
     public IEnumerator OnMouseDown()
     {
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
 
-        if (LevelLoader.mode != 4) yield break;
+        if (LevelLoader.mode != 4 || !table.joined) yield break;
         if(init_flag)init();
 
         if (table.start)
         {
-            Debug.Log("Proveravamo uslov");
             if (!(GameObject.Find("PlayerConnectionObject1") && table.turn) && !(GameObject.Find("PlayerConnectionObject2") && !table.turn)) yield break;
-            Debug.Log("START");
             if (table.selected != "empty" && !busy && !table.build)
             {
                 //----------------------------MOVE-----------------------------------
-                Debug.Log("MOVE");
                 GameObject tempObj = GameObject.Find(table.selected);
                 if (!table.turns(tempObj.name) || !possible_to_move(tempObj)) yield break;
                 curr_player.changeBusy(tempObj.GetComponent<PlayerUnit>().x, tempObj.GetComponent<PlayerUnit>().y, false);
@@ -70,9 +67,7 @@ public class TileButtonNetwork : MonoBehaviour
                 //-------------------------------------------------------------------
             } 
             else if (!busy && table.build && height < 4)
-            {
-                Debug.Log("BUILD");
-                
+            {                
                 if (!possible_to_build()) yield break;
                 GameObject tempObj = GameObject.Find(table.selected);
                 unitNetwork.CmdEraseHighlight(tempObj.GetComponent<PlayerUnit>().x, tempObj.GetComponent<PlayerUnit>().y);
@@ -164,7 +159,9 @@ public class TileButtonNetwork : MonoBehaviour
         TileButtonNetwork oldTile = GameObject.Find("Tile" + obj.GetComponent<PlayerUnit>().x + "" + obj.GetComponent<PlayerUnit>().y).GetComponent<TileButtonNetwork>();
         int oldH = oldTile.height, oldX = oldTile.x, oldY = oldTile.y;
         if (height - oldH > 1 || busy || Mathf.Abs(oldX - x) > 1 || Mathf.Abs(oldY - y) > 1 || (oldX == x && oldY == y) || height == 4)
+        {
             return false;
+        }
         return true;
     }
 
@@ -174,13 +171,13 @@ public class TileButtonNetwork : MonoBehaviour
         switch (heights)
         {
             case 1:
-                tmp = (float)0.7185981;
+                tmp = (float)0.692;
                 break;
             case 2:
-                tmp = (float)1.242;
+                tmp = (float)1.166;
                 break;
             case 3:
-                tmp = (float)1.615;
+                tmp = (float)1.6;
                 break;
             case 0:
                 tmp = 0;
@@ -217,7 +214,7 @@ public class TileButtonNetwork : MonoBehaviour
         List<GameObject> temp = possible_builds();//lista Cube-ova
         for (int i = 0; i < temp.Count; i++)
         {
-            unitNetwork.CmdHighlightTiles(temp[i].name);
+            unitNetwork.CmdHighlightBuildTiles(temp[i].name, temp[i].GetComponent<TileButtonNetwork>().height);
         }
     }
 

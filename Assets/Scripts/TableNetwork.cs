@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.Networking;
+using cakeslice;
 
 public class TableNetwork : NetworkBehaviour
 {
@@ -12,11 +13,13 @@ public class TableNetwork : NetworkBehaviour
 
     public bool[,] busy = new bool[5,5];
     public string selected, moved;
-    public Material highlight, highlightHover;
+    public Material highlight_moves, highlight_builds, highlightHover;
     public GameObject player11, player12, player21, player22;// da bi u Figure.Update() ne bi stalno trazili
     public AI[] PlayerAI;
     public int cnt;
     public long time, num;
+    public bool joined = false;
+    private bool outline_flag = true, assign_players = true;//One time bools
 
     public char[,] undo_state;
     public bool undo_start, undo_p11, undo_p12, undo_p21, undo_p22, undo_build, undo_turn;
@@ -38,7 +41,8 @@ public class TableNetwork : NetworkBehaviour
         turn = true;
         gameOver = false;
         selected = "empty";
-        highlight = Resources.Load("PossibleTiles") as Material;
+        highlight_moves = Resources.Load("PossibleTilesMove") as Material;
+        highlight_builds = Resources.Load("PossibleTilesBuild") as Material;
         highlightHover = Resources.Load("Outline") as Material;
         cnt = 0; time = 0; num = 0;
     }
@@ -50,6 +54,44 @@ public class TableNetwork : NetworkBehaviour
             turnOffBoard();
             GameObject.Find("CanvasExit").GetComponent<Canvas>().enabled = true;
         }
+        if (start)//figurice postavljene
+        {
+            if (assign_players)
+            {
+                assign_players = false;
+                //FOR ASSIGNING TABLE PLAYERS AFTER WE PLACED THEM ALL
+                player11 = GameObject.Find("Player11");
+                player12 = GameObject.Find("Player12");
+                player21 = GameObject.Find("Player21");
+                player22 = GameObject.Find("Player22");
+            }
+            if (turn)//Za crveno/plavno outline
+            {
+                if (outline_flag)
+                {
+                    outline_flag = false;
+                    player21.GetComponent<Outline>().enabled = false;
+                    player22.GetComponent<Outline>().enabled = false;
+                    player11.GetComponent<Outline>().color = 0;
+                    player12.GetComponent<Outline>().color = 0;
+                    player21.GetComponent<Outline>().color = 1;
+                    player22.GetComponent<Outline>().color = 1;
+                }
+            }
+            else
+            {
+                if (!outline_flag)
+                {
+                    outline_flag = true;
+                    player11.GetComponent<Outline>().enabled = false;
+                    player12.GetComponent<Outline>().enabled = false;
+                    player11.GetComponent<Outline>().color = 1;
+                    player12.GetComponent<Outline>().color = 1;
+                    player21.GetComponent<Outline>().color = 0;
+                    player22.GetComponent<Outline>().color = 0;
+                }
+            }
+        }            
     }
 
 
