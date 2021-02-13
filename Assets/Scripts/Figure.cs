@@ -51,6 +51,7 @@ public class Figure : MonoBehaviour
                             case TouchPhase.Began:
                                 gameObject.GetComponent<Outline>().enabled = true;//-----------------------------------------------------------------------------------
                                 break;
+<<<<<<< Updated upstream
 
                             case TouchPhase.Ended:
                                 if (gameObject.name != table.selected) gameObject.GetComponent<Outline>().enabled = false;//-------------------------------------------------------------------------------------
@@ -75,6 +76,18 @@ public class Figure : MonoBehaviour
         matArray[1] = null;
         gameObject.GetComponent<Renderer>().materials = matArray;
     }*/
+=======
+
+                            case TouchPhase.Ended:
+                                if (gameObject.name != table.selected) gameObject.GetComponent<Outline>().enabled = false;//-------------------------------------------------------------------------------------
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+>>>>>>> Stashed changes
 
     void OnMouseDown() //kada kliknemo figuricu
     {

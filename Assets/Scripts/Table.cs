@@ -17,15 +17,15 @@ public class Table : MonoBehaviour
     private bool outline_flag = true;
 
     public char[,] undo_state;
-    public bool undo_start, undo_p11, undo_p12, undo_p21, undo_p22, undo_build, undo_turn;
+    public bool undo_start, undo_p11, undo_p12, undo_p21, undo_p22, undo_build, undo_turn, undo_ai_not_done, undo_allowed = false;
     public string undo_selected;
+    public bool ai_not_done = false;
 
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
         Screen.SetResolution(1920, 1080, true);
-
 
         this.start = false;
         this.p11 = this.p12 = this.p21 = this.p22 = true;
@@ -47,15 +47,6 @@ public class Table : MonoBehaviour
 
     void Update()
     {
-        if(turn && PlayerAI[0] != null)
-        {
-            PlayerAI[0].doAI();
-            return;
-        }else if (!turn && PlayerAI[1] != null)
-        {
-            PlayerAI[1].doAI();
-            return;
-        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             turnOffBoard();
@@ -87,6 +78,27 @@ public class Table : MonoBehaviour
                 player22.GetComponent<Outline>().color = 0;
             }
         }
+<<<<<<< Updated upstream
+=======
+        if (turn && PlayerAI[0] != null)
+        {
+            if (!ai_not_done)
+            {
+                ai_not_done = true;
+                PlayerAI[0].doAI();
+                return;
+            }
+        }
+        else if (!turn && PlayerAI[1] != null)
+        {
+            if (ai_not_done)
+            {
+                ai_not_done = false;
+                PlayerAI[1].doAI();
+                return;
+            }
+        }
+>>>>>>> Stashed changes
     }
 
     public bool field_exist(int x, int y)
@@ -333,22 +345,22 @@ public class Table : MonoBehaviour
         return temp;
     }
 
-    public void repaint(char[,] new_state)
+    public void repaintWrapper(char[,] new_state)
+    {
+        StartCoroutine(repaint(new_state));
+    }
+
+    public IEnumerator repaint(char[,] new_state)
     {
         char[,] curr_state = get_state();
-        //print_state(curr_state);
+        yield return new WaitForSecondsRealtime(0.8f);
+        ///---------------------------------------------AI MOVE-----------------------------------------------------------------
         for (int i = 0; i < 5; i++)
             for(int j = 0; j < 5; j++)
             {
                 if (curr_state[i, j] == new_state[i, j])
                     continue;
-                //Promenice se u tri slucaja, tamo odakle se pomerio, tamo gde se pomerio i tamo gde je sagradio
-                if(indexOf(curr_state[i,j])<16 && indexOf(new_state[i, j]) > 15) //figurica je bila na tom polju al sada vise nije
-                {
-                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy = false; //Nemamo nista da menjamo jer mi menjamo samo figuricu a ona vise nije ovde tako da samo unbusy(tile)
-                    //Debug.Log("Tile" + i + "" + j);
-                    continue;
-                }
+                
                 if (indexOf(curr_state[i, j]) > 15 && indexOf(new_state[i, j]) < 16) //figurica nije bila ali sada jeste
                 {
                     if (indexOf(curr_state[i, j]) - 16 == 3)
@@ -357,40 +369,77 @@ public class Table : MonoBehaviour
                            won(1);
                         }
                         else won(2);
-                    if (indexOf(new_state[i, j]) % 4 != indexOf(curr_state[i, j]) % 4)//Ukoliko se pomeri na susedno polje i sagradi na polju na kome je prethodno bio
-                    {
-                        GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height++;
-                        int height = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height;
-                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
-                        level.SetActive(true);
-                        level.layer = 0;
-                    }
+                    
                     TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
                     int id, id2;
                     if (turn) id = 1;
                     else id = 2;
                     if (indexOf(new_state[i, j]) < 4 || (indexOf(new_state[i, j]) > 7 && indexOf(new_state[i, j]) < 12)) id2 = 1;
                     else id2 = 2;
-                    tile.xyz_axis(tile.height, GameObject.Find("Player" + id + "" + id2));
+                    GameObject figure = GameObject.Find("Player" + id + "" + id2);
+                    tile.xyz_axis(tile.height, figure);
                     tile.busy = true;
+                    tile.dustManager.playDustMove(figure.transform.position.x, figure.transform.position.z, figure.transform.position.y);
+                    tile.soundManager.playAudioMove();
                     continue;
                 }
-                if (indexOf(curr_state[i, j]) > 15 && indexOf(new_state[i, j]) > 15) //polje gde se sagradilo
+            }
+        if (gameOver) yield break; //Dont build after winning;
+        yield return new WaitForSecondsRealtime(0.75f);
+        //------------------------------------------AI BUILDING------------------------------------------------------------
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 5; j++)
+            {
+                if (curr_state[i, j] == new_state[i, j])
+                    continue;
+                if (indexOf(curr_state[i, j]) < 16 && indexOf(new_state[i, j]) > 15) //figurica je bila na tom polju al sada vise nije
                 {
-                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height++;
-                    int height = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().height;
+                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy = false;
+
+                    if (indexOf(new_state[i, j]) % 4 != indexOf(curr_state[i, j]) % 4)//Ukoliko se pomeri na susedno polje i sagradi na polju na kome je prethodno bio
+                    {
+                        TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
+                        tile.height++;
+                        int height = tile.height;
+                        GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
+                        level.SetActive(true);
+                        level.layer = 0;
+                        tile.playDropAnimation(level, height);
+                        tile.playDustBuild(height, true);
+                        tile.soundManager.playAudioBuild();
+                    }
+                    continue;
+                }
+                
+                if (indexOf(curr_state[i, j]) > 15 && indexOf(new_state[i, j]) > 15)
+                {
+                    TileButton tile = GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>();
+                    tile.height++;
+                    int height = tile.height;
                     GameObject level = GameObject.Find("Tile" + i + "" + j + "/house/Level" + height).gameObject;
-                    Debug.Log("Tile" + i + "" + j + "/house/Level" + height);
                     level.SetActive(true);
                     level.layer = 0;
+                    tile.playDropAnimation(level, height);
+                    tile.playDustBuild(height, true);
+                    tile.soundManager.playAudioBuild();
                     continue;
                 }
 
             }
+        turn = !turn;
+        undo_allowed = true;
     }
 
     public void repaint_undo(char[,] undo_state)
     {
+        //------------------Erasing highlighted tiles----------------------
+        Figure u_selected;
+        if (selected != "empty")
+        {
+            u_selected = GameObject.Find(selected).GetComponent<Figure>();
+            erase_highlighted(u_selected.x, u_selected.y);
+        }
+        //-----------------------------------------------------------------
         char[,] curr_state = get_state();
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < 5; j++)
@@ -415,7 +464,6 @@ public class Table : MonoBehaviour
                         player.transform.position = temp;
                         player.GetComponent<Renderer>().enabled = false;
                     }
-                    erase_highlighted(i,j);
                     continue;
                 }
                 if (indexOf(curr_state[i, j]) > 15 && indexOf(undo_state[i, j]) < 16) //figurica je bila na tom polju ali smo je pomerili i sad moramo da je vratimo
@@ -605,25 +653,31 @@ public class Table : MonoBehaviour
         undo_build = build;
         undo_turn = turn;
         undo_selected = selected;
+        undo_ai_not_done = ai_not_done;
     }
 
-    public void undo()
+    public void undo()//Called by UNDO button
     {
-        char[,] cur_state = get_state();
-        print_state(cur_state);
-        print("***************************************************");
-        print_state(undo_state);//Output in console
-        if (LevelLoader.mode != 2)
-            repaint_undo(undo_state);
-        else repaint_undo_ai(undo_state);
-        start = undo_start;
-        p11 = undo_p11;
-        p12 = undo_p12;
-        p21 = undo_p21;
-        p22 = undo_p22;
-        build = undo_build;
-        turn = undo_turn;
-        selected = undo_selected;
+        if (undo_allowed)
+        {
+            if (LevelLoader.mode != 2)
+                repaint_undo(undo_state);
+            else
+            {
+                if (!turn) return;//We shouldnt call UNDO if AI is in the middle of his turn
+                repaint_undo_ai(undo_state);
+            }
+            undo_allowed = false;//valjda je ovde okej zbog returna
+            start = undo_start;
+            p11 = undo_p11;
+            p12 = undo_p12;
+            p21 = undo_p21;
+            p22 = undo_p22;
+            build = undo_build;
+            turn = undo_turn;
+            selected = undo_selected;
+            ai_not_done = undo_ai_not_done;
+        }        
     }
 
     public void turnOffBoard()

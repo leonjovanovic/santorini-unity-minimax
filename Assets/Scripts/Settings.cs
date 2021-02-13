@@ -43,4 +43,8 @@ public class Settings : MonoBehaviour
         else color.a = 0f;
         possible_builds.color = color;
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }

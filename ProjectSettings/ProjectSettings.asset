@@ -124,7 +124,11 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
+<<<<<<< Updated upstream
   bundleVersion: 0.969
+=======
+  bundleVersion: 0.980
+>>>>>>> Stashed changes
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -168,9 +172,13 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.myGames.Santorini
+    Android: com.InspiredStudio.Santorini
   buildNumber: {}
+<<<<<<< Updated upstream
   AndroidBundleVersionCode: 3
+=======
+  AndroidBundleVersionCode: 1
+>>>>>>> Stashed changes
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

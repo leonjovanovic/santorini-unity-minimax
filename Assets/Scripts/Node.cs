@@ -345,8 +345,9 @@ public class Node {
     public void move(KeyValuePair<int, int> from, KeyValuePair<int, int> to, char[,] state)
     {
         int oldH = indexOf(state[from.Key, from.Value]) % 4, newH = indexOf(state[to.Key, to.Value]) - 16;
+
         state[to.Key, to.Value] = toIndex(indexOf(state[from.Key, from.Value]) + (newH-oldH));
-        state[from.Key, from.Value] = toIndex((state[from.Key, from.Value]%4)+16);
+        state[from.Key, from.Value] = toIndex(indexOf(state[from.Key, from.Value]) % 4 + 16);
     }
 
     public void build(KeyValuePair<int, int> to, char[,] state)

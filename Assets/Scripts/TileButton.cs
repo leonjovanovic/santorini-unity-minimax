@@ -10,16 +10,25 @@ public class TileButton : MonoBehaviour
     public Table table;
     public int x, y, height;
     public bool busy;
+    public SoundManager soundManager;
+    public DustParticleManger dustManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
         table = GameObject.Find("The Board").GetComponent<Table>();
+        soundManager = GameObject.Find("Center").GetComponent<SoundManager>();
+        dustManager = GameObject.Find("DustParticles").GetComponent<DustParticleManger>();
+
     }
 
     public void OnMouseDown()
     {
+<<<<<<< Updated upstream
+=======
+        if (LevelLoader.mode == 3) return;
+>>>>>>> Stashed changes
         if (table.start)
         {
             if (table.selected!="empty" && !busy && !table.build )
@@ -32,11 +41,16 @@ public class TileButton : MonoBehaviour
                 if (height == 3)
                     if (table.turn) table.won(1);
                     else table.won(2);
-                xyz_axis(this.height, tempObj); //pomeramo figuricu tempObj
+
+                soundManager.playAudioMove();
+                xyz_axis(this.height, tempObj); //Moving figure tempObj
+                dustManager.playDustMove(tempObj.transform.position.x, tempObj.transform.position.z, tempObj.transform.position.y);
+
                 this.busy = true;
                 table.build = true;
                 table.moved = this.name;
                 highlight_builds();
+                table.undo_allowed = true;
             }
             else if(!busy && table.build && height<4)
             {
@@ -46,13 +60,22 @@ public class TileButton : MonoBehaviour
                 height++;
                 string tileName = "Tile" + ((int)this.transform.position.x) + "" + ((int)this.transform.position.z)+"/house";
                 GameObject level = GameObject.Find(tileName).transform.Find("Level" + height).gameObject;
+
+                soundManager.playAudioBuild();
+                playDustBuild(height, false);
+
                 level.SetActive(true);
                 level.layer = 0;
                 level.gameObject.layer = 0;
+
+                playDropAnimation(level, height);
+
                 table.build = false;
                 //table.print_state();
                 table.turn = !table.turn; //OVDE MENJAMO TURN!!!!!!!!!!!!!!!!
+                table.ai_not_done = true;
                 table.selected = "empty";
+                table.undo_allowed = true;
             }
             return;
         }
@@ -62,66 +85,99 @@ public class TileButton : MonoBehaviour
 
     public void set_up_figurines()
     {
-        GameObject figurica = null;
-        //Debug.Log("USAO u set up figurines");
+        GameObject figurica;
         if (table.p11)
         {
             table.create_copy();
             table.p11 = false;
-            busy = true;
-            GameObject.Find("Player11").GetComponent<Renderer>().enabled = true;
-            Vector3 temp = new Vector3(x, 0, y);
             figurica = GameObject.Find("Player11");
-            figurica.transform.position = temp;
-            figurica.GetComponent<Figure>().x = x;
-            figurica.GetComponent<Figure>().y = y;
-            return;
         }
-        if (table.p12)
+        else if (table.p12)
         {
+            if (busy) return;
             table.create_copy();
-            if (busy) return;
             table.p12 = false;
-            busy = true;
-            GameObject.Find("Player12").GetComponent<Renderer>().enabled = true;
-            Vector3 temp = new Vector3(x, 0, y);
             figurica = GameObject.Find("Player12");
-            figurica.transform.position = temp;
-            figurica.GetComponent<Figure>().x = x;
-            figurica.GetComponent<Figure>().y = y;
+            table.ai_not_done = true;
             table.turn = !table.turn;
-            return;
         }
-        if (table.p21)
+        else if (table.p21)
         {
-            if (LevelLoader.mode == 1) table.create_copy();//pamti potez drugog igraca samo ako je pravi igrac a ne AI
             if (busy) return;
+            table.create_copy();
             table.p21 = false;
-            busy = true;
-            GameObject.Find("Player21").GetComponent<Renderer>().enabled = true;
-            Vector3 temp = new Vector3(x, 0, y);
             figurica = GameObject.Find("Player21");
-            figurica.transform.position = temp;
-            figurica.GetComponent<Figure>().x = x;
-            figurica.GetComponent<Figure>().y = y;
-            return;
         }
-        if (table.p22)
+        else if (table.p22)
         {
-            if (LevelLoader.mode == 1) table.create_copy();//pamti potez drugog igraca samo ako je pravi igrac a ne AI
             if (busy) return;
+            table.create_copy();
             table.p22 = false;
-            busy = true;
-            table.start = true;
-            GameObject.Find("Player22").GetComponent<Renderer>().enabled = true;
-            Vector3 temp = new Vector3(x, 0, y);
             figurica = GameObject.Find("Player22");
-            figurica.transform.position = temp;
-            figurica.GetComponent<Figure>().x = x;
-            figurica.GetComponent<Figure>().y = y;
+            table.start = true;
             table.turn = !table.turn;
-            return;
         }
+        else return; 
+		figurica.GetComponent<Renderer>().enabled = true;
+		Vector3 temp = new Vector3(x, 0, y);
+		figurica.transform.position = temp;
+		figurica.GetComponent<Figure>().x = x;
+		figurica.GetComponent<Figure>().y = y;
+        busy = true;
+		soundManager.playAudioMove();
+		dustManager.playDustMove(this.x, this.y, 0);
+        table.undo_allowed = true;
+    }
+    
+    private IEnumerator set_up_figurines_ai()
+    {
+        GameObject figurica;
+        if (table.p11)
+        {
+            table.p11 = false;
+            figurica = GameObject.Find("Player11");
+            yield return new WaitForSecondsRealtime(0.75f);
+        }
+        else if (table.p12)
+        {
+            if (busy) yield break;
+            table.p12 = false;
+            figurica = GameObject.Find("Player12");
+            yield return new WaitForSecondsRealtime(1.5f);
+            table.turn = !table.turn;
+        }
+        else if (table.p21)
+        {
+            if (busy) yield break;
+            table.p21 = false;
+            figurica = GameObject.Find("Player21");
+            yield return new WaitForSecondsRealtime(0.75f);
+        }
+        else if (table.p22)
+        {
+            if (busy) yield break;
+            table.p22 = false;
+            figurica = GameObject.Find("Player22");
+            yield return new WaitForSecondsRealtime(1.5f);
+            table.start = true;
+            table.turn = !table.turn;
+            if(LevelLoader.mode == 2) table.undo_allowed = true; //za Player vs AI
+        }
+        else yield break;
+
+        figurica.GetComponent<Renderer>().enabled = true;
+        Vector3 temp = new Vector3(x, 0, y);
+        figurica.transform.position = temp;
+        figurica.GetComponent<Figure>().x = x;
+        figurica.GetComponent<Figure>().y = y;
+        busy = true;
+        soundManager.playAudioMove();
+        dustManager.playDustMove(this.x, this.y, 0);
+    }
+
+    public void set_up_figurines_wrapper()
+    {
+        StartCoroutine(set_up_figurines_ai());
     }
     public Vector3 xyz_axis(int heights, GameObject figurica)//moram da prosledjujem height zbog undo-a
     {
@@ -225,6 +281,54 @@ public class TileButton : MonoBehaviour
                 matArray[1] = table.highlight_builds;
                 temp[i].transform.GetChild(0).transform.GetChild(top_level - 1).transform.GetChild(0).GetComponent<Renderer>().materials = matArray;
             }
+<<<<<<< Updated upstream
+=======
+        }
+    }
+
+    public void playDustBuild(int height, bool ai)
+    {
+        switch (height)
+        {
+            case 1:
+                dustManager.playDustBuild(x, y, 0, 0.3191362f, 0.204682f, 0.3191362f, ai);
+                break;
+            case 2:
+                dustManager.playDustBuild(x, y, 0.684f, 0.3191362f, 0.204682f, 0.3191362f, ai);
+                break;
+            case 3:
+                dustManager.playDustBuild(x, y - 0.116f, 1.1604f, 0.1646296f, 0.1055873f, 0.1646296f, ai);
+                break;
+            case 4:
+                dustManager.playDustBuild(x, y - 0.116f, 1.61f, 0.1260832f, 0.08086507f, 0.1260832f, ai);
+                break;
+            default:
+                Debug.LogError("Wrong height!");
+                break;
+        }
+        
+    }
+
+    public void playDropAnimation(GameObject level, int height)
+    {
+        switch (height)
+        {
+            case 1:
+                level.GetComponent<Animator>().Play("House.Level1Drop", 0, 0);
+                break;
+            case 2:
+                level.GetComponent<Animator>().Play("House.Level2Drop", 0, 0);
+                break;
+            case 3:
+                level.GetComponent<Animator>().Play("House.Level3Drop", 0, 0);
+                break;
+            case 4:
+                level.GetComponent<Animator>().Play("House.Level4Drop", 0, 0);
+                break;
+            default:
+                Debug.LogError("Wrong height2!");
+                break;
+>>>>>>> Stashed changes
         }
     }
 }

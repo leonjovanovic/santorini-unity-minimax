@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream:Assets/Scripts/Settings.cs.meta
 guid: 5e68852e6e9bd454d8125df3466c670a
+=======
+guid: 564389b5bbeb0a442b9290ab46728db6
+>>>>>>> Stashed changes:Assets/Scripts/FPSCounter.cs.meta
+=======
+guid: 5e68852e6e9bd454d8125df3466c670a
+>>>>>>> Stashed changes
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

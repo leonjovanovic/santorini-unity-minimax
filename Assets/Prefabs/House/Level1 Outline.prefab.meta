@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: fb3aa4b0e021d074bb9fcf5e846e6cc5
+=======
+<<<<<<< Updated upstream:Assets/Prefabs/House/Level2 Outline.prefab.meta
+guid: d6300db5c1c32ae49a60c176aa4e883a
+=======
+guid: fb3aa4b0e021d074bb9fcf5e846e6cc5
+>>>>>>> Stashed changes:Assets/Prefabs/House/Level1 Outline.prefab.meta
+>>>>>>> Stashed changes
 PrefabImporter:
   externalObjects: {}
   userData: 

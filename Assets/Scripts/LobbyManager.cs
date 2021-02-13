@@ -40,6 +40,10 @@ public class LobbyManager : NetworkBehaviour
         int matchNum = generateRoomNumber();
         roomNum.GetComponent<TMPro.TMP_Text>().text = matchNum.ToString();
         networkManager.matchMaker.CreateMatch(matchNum.ToString(), networkManager.matchSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
+<<<<<<< Updated upstream
+=======
+        GameObject.Find("Center").GetComponent<SoundManager>().playAudioMain();
+>>>>>>> Stashed changes
         changeCanvases();
     }
 
@@ -47,6 +51,7 @@ public class LobbyManager : NetworkBehaviour
     {
         networkManager.matchName = matchName;
         networkManager.matchMaker.JoinMatch(networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
+        GameObject.Find("Center").GetComponent<SoundManager>().playAudioMain();
         changeCanvases();
     }
 

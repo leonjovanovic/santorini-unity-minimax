@@ -12,11 +12,15 @@ public class TileButtonNetwork : MonoBehaviour
     public PlayerConnectionObject curr_player;
     public PlayerUnitPrefab unitNetwork;
     private bool init_flag;
+    public SoundManager soundManager;
+    public DustParticleManger dustManager;
     // Start is called before the first frame update
     void Start()
     {
         init_flag = true;
         table = this.transform.parent.GetComponent<TableNetwork>();
+        soundManager = GameObject.Find("Center").GetComponent<SoundManager>();
+        dustManager = GameObject.Find("DustParticles").GetComponent<DustParticleManger>();
     }
 
     // Update is called once per frame
@@ -51,17 +55,18 @@ public class TileButtonNetwork : MonoBehaviour
                 if (height == 3)
                     if (table.turn) curr_player.CmdWon(1);
                     else curr_player.CmdWon(2);
-                float tmp_z = y_axis(this.height);
-                float tmp_y = z_axis(this.height);
+                float moving_z = z_axis(this.height);
+                float moving_y = y_axis(this.height);
 
-                curr_player.move(GameObject.Find(table.selected).name, x, tmp_z, y, tmp_y);
+                curr_player.move(GameObject.Find(table.selected).name, x, moving_y, y, moving_z);
 
                 curr_player.changeBusy(x, y, true);
                 curr_player.changeBuild(true);
                 curr_player.CmdChangeMoved(this.name);
 
                 yield return new WaitUntil(() => table.moved == this.name);//Ovo mora da bi sacekali da server postavi moved jer cemo u highlight_build ispitivati to
-
+                //dustManager.playDustMove(tempObj.transform.position.x, tempObj.transform.position.z, tempObj.transform.position.y);
+                //soundManager.playAudioMove();
                 highlight_builds();
 
                 //-------------------------------------------------------------------
@@ -69,6 +74,7 @@ public class TileButtonNetwork : MonoBehaviour
             else if (!busy && table.build && height < 4)
             {                
                 if (!possible_to_build()) yield break;
+                int old_height = height;
                 GameObject tempObj = GameObject.Find(table.selected);
                 unitNetwork.CmdEraseHighlight(tempObj.GetComponent<PlayerUnit>().x, tempObj.GetComponent<PlayerUnit>().y);
                 curr_player.CmdBuild(x,y);
@@ -76,6 +82,12 @@ public class TileButtonNetwork : MonoBehaviour
                 curr_player.changeBuild(false);
                 curr_player.CmdChangeTurn();
                 unitNetwork.CmdChangeSelected("empty");
+
+                //yield return new WaitUntil(() => height == old_height+1);
+                //GameObject level = GameObject.Find("Tile" + ((int)this.transform.position.x) + "" + ((int)this.transform.position.z) + "/house/Level" + height);
+                //playDropAnimation(level, height);
+                //soundManager.playAudioBuild();
+                //playDustBuild(height);
             }
             yield break;
         }
@@ -104,6 +116,8 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.changeBusy(x, y, true);
             curr_player.CmdSpawnUnit11();
             curr_player.CmdMove11(x, 0, y, y);
+            //soundManager.playAudioMove();
+            //dustManager.playDustMove(this.x, this.y, 0);
             return;
         }
         if (table.p12 && isServer)
@@ -114,6 +128,8 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.CmdSpawnUnit12();
             curr_player.CmdMove12(x, 0, y, y);
 
+            //soundManager.playAudioMove();
+            //dustManager.playDustMove(this.x, this.y, 0);
             curr_player.CmdChangeTurn();
             return;
         }
@@ -124,6 +140,8 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.changeBusy(x, y, true);
             curr_player.CmdSpawnUnit21();
             curr_player.CmdMove21(x, 0, y, y);
+            //soundManager.playAudioMove();
+            //dustManager.playDustMove(this.x, this.y, 0);
             return;
         }
         if (table.p22 && !isServer && !table.p12)
@@ -134,6 +152,8 @@ public class TileButtonNetwork : MonoBehaviour
             curr_player.CmdSpawnUnit22();
             curr_player.CmdMove22(x, 0, y, y);
 
+            //soundManager.playAudioMove();
+            //dustManager.playDustMove(this.x, this.y, 0);
             curr_player.CmdChangeTurn();
             curr_player.CmdStartPlaying();
             return;
@@ -248,5 +268,55 @@ public class TileButtonNetwork : MonoBehaviour
         if (height == 4 || busy || Mathf.Abs(tile.x - x) > 1 || Mathf.Abs(tile.y - y) > 1 || (tile.x == x && tile.y == y))
             return false;
         return true;
+    }
+
+    public void playDustBuild(int height)
+    {
+        switch (height)
+        {
+            case 1:
+                dustManager.playDustBuild(x, y, 0, 0.3191362f, 0.204682f, 0.3191362f, false);
+                break;
+            case 2:
+                dustManager.playDustBuild(x, y, 0.684f, 0.3191362f, 0.204682f, 0.3191362f, false);
+                break;
+            case 3:
+                dustManager.playDustBuild(x, y - 0.116f, 1.1604f, 0.1646296f, 0.1055873f, 0.1646296f, false);
+                break;
+            case 4:
+                dustManager.playDustBuild(x, y - 0.116f, 1.61f, 0.1260832f, 0.08086507f, 0.1260832f, false);
+                break;
+            default:
+                Debug.LogError("Wrong height!");
+                break;
+        }
+
+    }
+
+    public void playDropAnimation(GameObject level, int height)
+    {
+        switch (height)
+        {
+            case 1:
+                level.GetComponent<Animator>().Play("House.Level1Drop", 0, 0);
+                break;
+            case 2:
+                level.GetComponent<Animator>().Play("House.Level2Drop", 0, 0);
+                break;
+            case 3:
+                level.GetComponent<Animator>().Play("House.Level3Drop", 0, 0);
+                break;
+            case 4:
+                level.GetComponent<Animator>().Play("House.Level4Drop", 0, 0);
+                break;
+            default:
+                Debug.LogError("Wrong height2!");
+                break;
+        }
+    }
+
+    public void playDustMove(float x, float z, float y)
+    {
+        dustManager.playDustMove(x, z, y);
     }
 }

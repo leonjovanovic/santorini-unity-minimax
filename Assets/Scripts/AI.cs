@@ -29,11 +29,9 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
             Node next = tree.next_root();// Tabla sa sledecim odigranim potezom;
             //Debug.Log("Najbolji score: " + tree.root.f_score);
             tree = null;
-            //TODO Garbage collector     
             GC.Collect();// proveriti da li ubrzava ili usporava proces
-            if(next != null)table.repaint(next.state);
-            //table.print_state();
-            table.turn = !table.turn;
+            if(next != null) table.repaintWrapper(next.state);
+            //table.turn = !table.turn;
         }
     }
 
@@ -44,7 +42,7 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
             System.Random rnd = new System.Random();
             int x = rnd.Next(0, 4);
             int y = rnd.Next(0, 4);
-            GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().set_up_figurines();
+            GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().set_up_figurines_wrapper();
             //Druga figurica prvog igraca
             int x1 = rnd.Next(0, 4);
             int y1 = rnd.Next(0, 4);
@@ -53,7 +51,7 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
                 x1 = rnd.Next(0, 4);
                 y1 = rnd.Next(0, 4);
             }
-            GameObject.Find("Tile" + x1 + "" + y1).GetComponent<TileButton>().set_up_figurines();
+            GameObject.Find("Tile" + x1 + "" + y1).GetComponent<TileButton>().set_up_figurines_wrapper();
         }
         else
         {   //Prva figurica drugog igraca
@@ -143,17 +141,17 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
                         continue;
                     if (!GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy)
                     {
-                        GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().set_up_figurines();
+                        GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().set_up_figurines_wrapper();
                         found1 = true;
                     }
                 }
         }
         else
         {
-            GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().set_up_figurines();
+            GameObject.Find("Tile" + x + "" + y).GetComponent<TileButton>().set_up_figurines_wrapper();
         }
         for (int i = x - 1; (i <= x + 1) && !found2; i++)
-            for (int j = y - 1; j <= y + 1; j++)
+            for (int j = y - 1; j <= y + 1 && !found2; j++)
             {
                 if (!table.field_exist(i, j))
                     continue;
@@ -161,7 +159,7 @@ public class AI //TODO pri postavljanju figurica kada bele stavimo jedne pored d
                     continue;
                 if (!GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().busy)
                 {
-                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().set_up_figurines();
+                    GameObject.Find("Tile" + i + "" + j).GetComponent<TileButton>().set_up_figurines_wrapper();
                     found2 = true;
                 }
             }
