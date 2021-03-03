@@ -10,7 +10,7 @@
 ![](images/unity_data.jpg)
 
 ## Game design
-![](images/Game design.jpg)
+![](images/Game_design.jpg)
   Most of 3d models (island, rocks, building, shark, crab etc.) were created in Blender, while few were imported from Unity Asset Store. Animations are from both Blender and Unity.
 
 ## Connecting over Wifi
