@@ -1,4 +1,4 @@
-# Santorini Board Game
+# <p style="text-align: center;"> aaa</p>
 
 ## Summary
    Santorini board game is made in Unity Game Engine with support for Android OS. Game implements playing on same phone, playing over same Wifi or playing versus AI. This version of Santorini board game is implemented without Greek Gods feature. UNet was used for communication over Wifi. 
