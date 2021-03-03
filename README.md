@@ -12,10 +12,12 @@
 
 ## Game design
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Most of 3d models (island, rocks, building, shark, crab etc.) were created in Blender, while few were imported from Unity Asset Store. Animations are from both Blender and Unity.
+
 ![](images/Game_design.jpg)
 
 ## Connecting over Wifi
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Game can be played over the same Wifi network where first player creates room with unique ID and acts like server, while second player finds room number in list of all available rooms.
+
 ![](images/Wifi1.jpg)
 
 Video:
