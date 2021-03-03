@@ -18,7 +18,8 @@
   Game can be played over the same Wifi network where first player creates room with unique ID and acts like server, while second player finds room number in list of all available rooms.
 
 Video:
-[![Video](images/Youtube.jpg)](https://www.youtube.com/watch?v=r9zkKjOvm_8)
+
+[![Video](<img align="center" src="images/Youtube.jpg" alt="...">)](https://www.youtube.com/watch?v=r9zkKjOvm_8)
 
 ## Improving game
 * Improving water shader
