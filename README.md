@@ -17,9 +17,16 @@
 ![](images/Wifi1.jpg)
   Game can be played over the same Wifi network where first player creates room with unique ID and acts like server, while second player finds room number in list of all available rooms.
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/r9zkKjOvm_8/0.jpg)](https://www.youtube.com/watch?v=r9zkKjOvm_8)
+
 ## Improving game
-* Item 1
-* Item 2
+* Improving water shader
+* Adding 3d model of birds with sounds
+* Adding night theme with torches
+* Advanced tutorial for tactics
+* Model animation on touch
+* Improving 3d model of rocks
+* Some QoL features
 
 
 
