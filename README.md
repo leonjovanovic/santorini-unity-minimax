@@ -21,7 +21,7 @@ Video:
 
 [![Video](images/Youtube.jpg)](https://www.youtube.com/watch?v=r9zkKjOvm_8)
 
-## Improving game
+## Improving game - TODO
 * Improving water shader
 * Adding 3d model of birds with sounds
 * Adding night theme with torches
