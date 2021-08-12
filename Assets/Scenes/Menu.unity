@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 0b5876176473cdb4094db44482d5ca5d,
-    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 0b5876176473cdb4094db44482d5ca5d, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -244,7 +243,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
@@ -268,7 +267,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: set_mode
         m_Mode: 3
         m_Arguments:
@@ -537,8 +536,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -963,8 +961,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1098,8 +1095,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1234,8 +1230,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1369,8 +1364,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1580,8 +1574,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1966,8 +1959,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -2168,8 +2160,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -2344,8 +2335,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -2590,8 +2580,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -2802,8 +2791,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -3091,8 +3079,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -3226,8 +3213,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -3791,8 +3777,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -3935,7 +3920,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
@@ -3959,7 +3944,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: set_mode
         m_Mode: 3
         m_Arguments:
@@ -4083,8 +4068,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -4364,8 +4348,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -4502,8 +4485,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -4782,8 +4764,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -4992,8 +4973,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -5373,8 +5353,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -5584,8 +5563,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -5728,7 +5706,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
@@ -5752,7 +5730,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: set_mode
         m_Mode: 3
         m_Arguments:
@@ -5884,7 +5862,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1308152788}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: LoadLevel
         m_Mode: 3
@@ -5908,7 +5886,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1308152788}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: set_mode
         m_Mode: 3
@@ -6257,8 +6235,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -6691,8 +6668,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -6826,8 +6802,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -7024,12 +6999,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1308152787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4dae4f3ae52c74fa84a1f7cc659cd2, type: 3}
+  m_Script: {fileID: 11500000, guid: a26218c3a14ba5b41838dda0b9be84cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1578565373}
   slider: {fileID: 1975549720}
-  progressText: {fileID: 831236913}
+  progressText: {fileID: 1127447696}
   GameManager: {fileID: 0}
 --- !u!4 &1308152789
 Transform:
@@ -7094,7 +7069,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1402047929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728aa6a3f1af71246822a953786c2b94, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e5f6e17337a33740bf4eafc73d08334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
@@ -7173,8 +7148,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -7323,7 +7297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1461275951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728aa6a3f1af71246822a953786c2b94, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e5f6e17337a33740bf4eafc73d08334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
@@ -7402,8 +7376,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -7767,8 +7740,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -7902,8 +7874,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -8038,8 +8009,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -8173,8 +8143,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -8317,7 +8286,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
@@ -8341,7 +8310,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1308152788}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: set_mode
         m_Mode: 3
         m_Arguments:
@@ -8591,8 +8560,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -8961,8 +8929,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -9096,8 +9063,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -9231,8 +9197,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -9366,8 +9331,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -9501,8 +9465,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -9671,8 +9634,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -9853,7 +9815,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1461275953}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: quitGame
         m_Mode: 1
@@ -10068,8 +10030,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -10315,8 +10276,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -10560,8 +10520,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -10695,8 +10654,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845,
-    type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 046c038fbc9798941a6e146bd33cc845, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -10804,7 +10762,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2145851512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728aa6a3f1af71246822a953786c2b94, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e5f6e17337a33740bf4eafc73d08334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
