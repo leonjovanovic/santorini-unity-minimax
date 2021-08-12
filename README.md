@@ -1,3 +1,10 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+# Santorini_Unity
+Artificial Intelligence with Minimax algorithm in Santorini board game in Unity (C#)
+=======
+>>>>>>> Stashed changes
 # <p style="text-align: center;"> Santorini Board Game</p>
 
 ## Summary
@@ -36,3 +43,7 @@ Video:
 
 
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> d77a19b652b36250f98a95892b7b6b211b37adf8
+>>>>>>> Stashed changes
