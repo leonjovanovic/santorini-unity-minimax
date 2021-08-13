@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7761170332282396967}
-  - component: {fileID: 2408532059748000786}
   - component: {fileID: 8765715008171078225}
-  - component: {fileID: -744994614633325829}
+  - component: {fileID: 211856631464665705}
   m_Layer: 0
   m_Name: PlayerConnectionObject
   m_TagString: Untagged
@@ -33,37 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2408532059748000786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025411396129037988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f05de06ee9ddd4d91f73a064c59c75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerUnit11: {fileID: 7265312677368954334, guid: ae035307465bd9e42a751a440cc5797f,
-    type: 3}
-  PlayerUnit12: {fileID: 4764531402389525401, guid: a69abfbb5821a624bb0b195cd4fcac65,
-    type: 3}
-  PlayerUnit21: {fileID: 9026303174161645517, guid: c2638b237333aba4381593ad765b3198,
-    type: 3}
-  PlayerUnit22: {fileID: 6860473054760379946, guid: 9d333482ddde07a45917125d992445a5,
-    type: 3}
-  Figure11: {fileID: 0}
-  Figure12: {fileID: 0}
-  Figure21: {fileID: 0}
-  Figure22: {fileID: 0}
-  tableNetwork: {fileID: 2222717165904022333, guid: 2f727579c39e159468dfa045b2df9b74,
-    type: 3}
-  spawn11: 0
-  spawn12: 0
-  spawn21: 0
-  spawn22: 0
-  table: {fileID: 2222717165904022333, guid: 2f727579c39e159468dfa045b2df9b74, type: 3}
 --- !u!114 &8765715008171078225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +65,7 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &-744994614633325829
+--- !u!114 &211856631464665705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,6 +74,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1025411396129037988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2bca70145f14114e917509bf49f8d12, type: 3}
+  m_Script: {fileID: 11500000, guid: 58a735b69a58b0a47add0c6a866e23c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerUnit11: {fileID: 7265312677368954334, guid: 32efa0310e8740049b39e5440c53c52a, type: 3}
+  PlayerUnit12: {fileID: 4764531402389525401, guid: 7096977a034067246841f8fc0aa9f14e, type: 3}
+  PlayerUnit21: {fileID: 9026303174161645517, guid: 6cfa2ec1932a0784aa80dd9989ff9872, type: 3}
+  PlayerUnit22: {fileID: 6860473054760379946, guid: a3b81a7a93e09eb46933e217ed641f4e, type: 3}
+  Figure11: {fileID: 0}
+  Figure12: {fileID: 0}
+  Figure21: {fileID: 0}
+  Figure22: {fileID: 0}
+  tableNetwork: {fileID: 2222717165904022333, guid: 2f727579c39e159468dfa045b2df9b74, type: 3}
+  spawn11: 0
+  spawn12: 0
+  spawn21: 0
+  spawn22: 0
+  table: {fileID: 0}

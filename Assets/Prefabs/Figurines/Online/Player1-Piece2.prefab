@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 4849370654985783965}
   - component: {fileID: 1192103722490709616}
   - component: {fileID: 8935248798599174077}
-  - component: {fileID: 2245175932328124739}
+  - component: {fileID: 7672989795110865452}
   - component: {fileID: 1001746715650532076}
   - component: {fileID: 6992401009624681116}
   m_Layer: 0
@@ -147,6 +147,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -171,6 +172,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8935248798599174077
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -185,7 +187,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 456791e1a5a88474faa493184b9fc658, type: 3}
---- !u!114 &2245175932328124739
+--- !u!114 &7672989795110865452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,13 +196,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8935248798599174073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0503b05af2b507438a7817b61ca7680, type: 3}
+  m_Script: {fileID: 11500000, guid: 475dcd44816bd2143b6239c27204e051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  table: {fileID: -2970538543834283649, guid: 2f727579c39e159468dfa045b2df9b74, type: 3}
-  unitNetwork: {fileID: 0}
   x: 0
   y: 0
+  new_x: 0
+  new_y: 0
 --- !u!65 &1001746715650532076
 BoxCollider:
   m_ObjectHideFlags: 0

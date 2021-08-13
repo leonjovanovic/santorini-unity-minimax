@@ -7,7 +7,7 @@ using UnityEngine.Networking.Types;
 using TMPro;
 using System;
 
-public class LobbyManager : NetworkBehaviour
+public class LobbyManager : MonoBehaviour
 {
     public NetworkManager networkManager;
     public GameObject noRooms;
@@ -55,7 +55,7 @@ public class LobbyManager : NetworkBehaviour
     private void changeCanvases()
     {
         lobby.SetActive(false);
-        game.SetActive(true);
+        //game.SetActive(true);
     }
 
     public void refreshRooms()

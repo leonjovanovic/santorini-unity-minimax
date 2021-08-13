@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0572bec29e09ab14bbea4de3386675f4, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: dda7f2df04ea4254c990b14005fa45eb, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -10461,7 +10461,7 @@ Animator:
   m_GameObject: {fileID: 814089574}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c456af4a887ca142bf362f428cabd71, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4b26e43ba4d3de64f91b781599e21987, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -12579,7 +12579,7 @@ Animator:
   m_GameObject: {fileID: 1008410903}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eb0602d40f9c76b4daf9977b5dd471ff, type: 2}
+  m_Controller: {fileID: 9100000, guid: fe65d2a6319083f4088faa08373d7a9e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -18130,7 +18130,7 @@ PrefabInstance:
     - target: {fileID: -8752741017860898196, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -5508551277811371556, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
     - target: {fileID: -8679921383154817045, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -18187,10 +18187,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -10.891001
       objectReference: {fileID: 0}
+    - target: {fileID: -8610205677966239024, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+    - target: {fileID: -7399543579104297157, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+    - target: {fileID: -4709564965878373438, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
     - target: {fileID: -2527720658903242350, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -5508551277811371556, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
     - target: {fileID: 919132149155446097, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_Name
       value: crab
@@ -18202,11 +18214,15 @@ PrefabInstance:
     - target: {fileID: 2041125065534292724, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -5508551277811371556, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
     - target: {fileID: 3946335207062160797, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -5508551277811371556, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+    - target: {fileID: 6826629788608872967, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
 --- !u!1001 &1465837368
@@ -19442,7 +19458,7 @@ TerrainCollider:
   m_GameObject: {fileID: 1595396316}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 625c0b7d3c6bbb146bd56969ab4f4dc0, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: c6c6c62f94272a04baf1cd8cf15d7561, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1595396319
 Terrain:
@@ -19453,7 +19469,7 @@ Terrain:
   m_GameObject: {fileID: 1595396316}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 625c0b7d3c6bbb146bd56969ab4f4dc0, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: c6c6c62f94272a04baf1cd8cf15d7561, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
