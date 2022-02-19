@@ -2472,7 +2472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &235651012
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5745,6 +5745,7 @@ GameObject:
   - component: {fileID: 534669907}
   - component: {fileID: 534669903}
   - component: {fileID: 534669908}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5819,6 +5820,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 53.06, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5368c0aed71712c4bb933b021f7ee7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 864938961}
+  distance: 8
+  xSpeed: 1
+  ySpeed: 1
+  yMinLimit: -90
+  yMaxLimit: 90
+  distanceMin: 10
+  distanceMax: 10
+  smoothTime: 2
+  slider: {fileID: 2132645107}
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18215,10 +18238,46 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+    - target: {fileID: 2057044495395668346, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -36.362892
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057044495395668346, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 101.198555
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057044495395668346, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -108.04795
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093671460071685797, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 46.517757
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093671460071685797, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 81.032486
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093671460071685797, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -156.26794
+      objectReference: {fileID: 0}
     - target: {fileID: 3946335207062160797, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 441916079295038247, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+    - target: {fileID: 6011586235758023215, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -60.35066
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011586235758023215, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 51.510483
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011586235758023215, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -24.83714
+      objectReference: {fileID: 0}
     - target: {fileID: 6826629788608872967, guid: 99d174dd26fa62c4f9c58f4ba638fd27, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -25746,7 +25805,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 534669906}
         m_TargetAssemblyTypeName: DragMouseOrbit, Assembly-CSharp
         m_MethodName: changePosition
         m_Mode: 1
