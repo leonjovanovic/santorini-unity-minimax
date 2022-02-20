@@ -6,6 +6,7 @@ using UnityEngine.Networking.Match;
 using UnityEngine.Networking.Types;
 using TMPro;
 using System;
+using static UnityEngine.Networking.Match.NetworkMatch;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class LobbyManager : MonoBehaviour
     public GameObject room;
     public GameObject content;
     public GameObject lobby, game;
+    public MainMenu menu;
+    public NetworkID matchID;
     List<GameObject> roomList = new List<GameObject>();
     List<int> roomNumbers = new List<int>();
     System.Random rand;
@@ -24,6 +27,8 @@ public class LobbyManager : MonoBehaviour
     void Start()
     {
         rand = new System.Random();
+        menu = GameObject.Find("Menu").GetComponent<MainMenu>();
+        networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         networkManager.StartMatchMaker();
         refreshRooms();
     }
@@ -36,18 +41,27 @@ public class LobbyManager : MonoBehaviour
 
     public void createRoom()
     {
+        if(networkManager == null) networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         networkManager.StartMatchMaker();
         int matchNum = generateRoomNumber();
         roomNum.GetComponent<TMPro.TMP_Text>().text = matchNum.ToString();
-        networkManager.matchMaker.CreateMatch(matchNum.ToString(), networkManager.matchSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
+        networkManager.matchMaker.CreateMatch(matchNum.ToString(), networkManager.matchSize, true, "", "", "", 0, 0, OnMatchCreate);
         GameObject.Find("Center").GetComponent<SoundManager>().playAudioMain();
         changeCanvases();
     }
 
+    public void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
+    {
+        networkManager.OnMatchCreate(success, extendedInfo, matchInfo);
+        matchID = matchInfo.networkId;
+    }
+
     public void joinRoom(string matchName, NetworkID networkId)
     {
+        if (networkManager == null) networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         networkManager.matchName = matchName;
         networkManager.matchMaker.JoinMatch(networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
+        matchID = networkId;
         GameObject.Find("Center").GetComponent<SoundManager>().playAudioMain();
         changeCanvases();
     }
@@ -55,11 +69,12 @@ public class LobbyManager : MonoBehaviour
     private void changeCanvases()
     {
         lobby.SetActive(false);
-        //game.SetActive(true);
+        game.SetActive(true);
     }
 
     public void refreshRooms()
     {
+        if (networkManager == null) networkManager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         ClearRoomList();
         networkManager.matchMaker.ListMatches(0, 20, "", true, 0, 0, OnMatchList);
     }
@@ -105,5 +120,16 @@ public class LobbyManager : MonoBehaviour
             }
         } while (flag);
         return num;
+    }
+
+    public void resetNetworkGame()
+    {
+        networkManager.matchMaker.DestroyMatch(matchID, 0, DestroyResponse);
+        menu.resetGame();
+    }
+
+    public void DestroyResponse(bool success, string extendedInfo)
+    {
+
     }
 }

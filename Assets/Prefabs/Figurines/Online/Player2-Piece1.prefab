@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4981686836085970620}
   - component: {fileID: 7131075751801665096}
   - component: {fileID: 8494376874822760640}
-  - component: {fileID: 7954645489560899976}
   - component: {fileID: 3706545552789435442}
   - component: {fileID: 304263085588710891}
+  - component: {fileID: 5216114899392239923}
   m_Layer: 0
   m_Name: Player21
   m_TagString: Untagged
@@ -99,22 +99,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 1e68b0727e968f748bac05b0c8bf2cc7, type: 3}
---- !u!114 &7954645489560899976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8494376874822760701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475dcd44816bd2143b6239c27204e051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
-  y: 0
-  new_x: 0
-  new_y: 0
 --- !u!65 &3706545552789435442
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -142,6 +126,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   eraseRenderer: 0
+--- !u!114 &5216114899392239923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494376874822760701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47ec93e711278743add22657cb025c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table: {fileID: 0}
+  unitNetwork: {fileID: 0}
+  x: 0
+  y: 0
 --- !u!1 &9026303174161645517
 GameObject:
   m_ObjectHideFlags: 0

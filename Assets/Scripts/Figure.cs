@@ -11,9 +11,12 @@ public class Figure : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (LevelLoader.mode == 4) return;
-        table = GameObject.Find("The Board").GetComponent<Table>();
-        gameObject.GetComponent<cakeslice.Outline>().enabled = false;//-------------------------------------------------------------------------------
+        if (LevelLoader.mode == 4)
+            table = GameObject.Find("The Board").GetComponent<Table>();
+        //table = GameObject.Find("The Board Network(Clone)").GetComponent<TableNetwork>();
+        else
+            table = GameObject.Find("The Board").GetComponent<Table>();
+        gameObject.GetComponent<cakeslice.Outline>().enabled = false;
     }
 
     // Update is called once per frame

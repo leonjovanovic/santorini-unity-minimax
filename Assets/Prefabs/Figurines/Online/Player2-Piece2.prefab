@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1351037832973294749}
   - component: {fileID: 2119317827098978744}
   - component: {fileID: 1903695814114787070}
-  - component: {fileID: 8226075744753248508}
   - component: {fileID: 2662362465932682607}
   - component: {fileID: 8924607783530957434}
+  - component: {fileID: 1034536192229223035}
   m_Layer: 0
   m_Name: Player22
   m_TagString: Untagged
@@ -99,22 +99,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 8f1ddb45f962d2d4b8f9a05dfd60e189, type: 3}
---- !u!114 &8226075744753248508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903695814114787067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475dcd44816bd2143b6239c27204e051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
-  y: 0
-  new_x: 0
-  new_y: 0
 --- !u!65 &2662362465932682607
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -142,6 +126,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   eraseRenderer: 0
+--- !u!114 &1034536192229223035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903695814114787067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47ec93e711278743add22657cb025c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table: {fileID: 0}
+  unitNetwork: {fileID: 0}
+  x: 0
+  y: 0
 --- !u!1 &6860473054760379946
 GameObject:
   m_ObjectHideFlags: 0

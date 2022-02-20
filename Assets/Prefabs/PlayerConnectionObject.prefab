@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7761170332282396967}
   - component: {fileID: 8765715008171078225}
   - component: {fileID: 211856631464665705}
+  - component: {fileID: -1489967991745487623}
   m_Layer: 0
   m_Name: PlayerConnectionObject
   m_TagString: Untagged
@@ -91,3 +92,17 @@ MonoBehaviour:
   spawn21: 0
   spawn22: 0
   table: {fileID: 0}
+--- !u!114 &-1489967991745487623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025411396129037988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeed7ffb3af8fb44ba99edc04ceeba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight_moves: {fileID: 2100000, guid: a7accd53f1bf62c408c83dbba663edef, type: 2}
+  highlight_builds: {fileID: 2100000, guid: bde9c9785c86fbb4b8d57ab39d0f2e2b, type: 2}
