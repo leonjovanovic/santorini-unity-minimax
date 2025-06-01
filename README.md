@@ -22,7 +22,7 @@
 
 Video:
 
-[![Video](images/youtube.jpg)](https://youtu.be/q1SbFl1041k)
+[![Video](images/youtube.jpg)](https://www.youtube.com/watch?v=lZPLDXY7MhM)
 
 ## Improving game - TODO
 * Improving water shader
